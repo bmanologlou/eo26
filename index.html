@@ -114,28 +114,25 @@
   /* ---------- showcase video ---------- */
   .showcase{
     width:100%;height:clamp(60vh,82vh,900px);
-    background:linear-gradient(135deg,#0c0c12,#1a1a2e 60%,var(--blue));
+    background:#0c0c12;
     position:relative;overflow:hidden;
-    display:flex;align-items:center;justify-content:center;
   }
-  .showcase::after{
-    content:'';position:absolute;inset:0;
-    background:radial-gradient(circle at 30% 40%,rgba(255,255,255,.06),transparent 50%);
+  .showcase video{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:center;display:block;
   }
-  .showcase-inner{position:relative;z-index:2;text-align:center;color:#fff;cursor:pointer;}
-  .showcase iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:3;}
-  .play{
-    width:84px;height:84px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);
-    display:flex;align-items:center;justify-content:center;margin:0 auto 24px;
-    transition:all .3s ease;cursor:pointer;backdrop-filter:blur(4px);
+  .sound-toggle{
+    position:absolute;bottom:24px;right:24px;z-index:4;
+    width:50px;height:50px;border-radius:50%;
+    border:1.5px solid rgba(255,255,255,.45);background:rgba(0,0,0,.25);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    backdrop-filter:blur(6px);transition:all .3s ease;
   }
-  .play:hover{background:#fff;border-color:#fff;transform:scale(1.06);}
-  .play svg{width:26px;height:26px;fill:#fff;margin-left:4px;transition:fill .3s;}
-  .play:hover svg{fill:var(--ink);}
-  .showcase-label{font-size:13px;letter-spacing:.16em;text-transform:uppercase;opacity:.75;}
-  .showcase-note{
-    position:absolute;bottom:22px;left:0;right:0;text-align:center;
-    font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);z-index:2;
+  .sound-toggle:hover{background:#fff;border-color:#fff;}
+  .sound-toggle svg{width:20px;height:20px;fill:#fff;transition:fill .3s;}
+  .sound-toggle:hover svg{fill:var(--ink);}
+  @media(max-width:720px){
+    .showcase{height:100vh;}
   }
 
   /* ---------- what we do strip ---------- */
@@ -219,11 +216,12 @@
 
 <!-- SHOWCASE VIDEO -->
 <section class="showcase scroll-reveal" id="showcase">
-  <div class="showcase-inner" id="playTrigger">
-    <div class="play">
-      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-    </div>
-    <span class="showcase-label">Watch the showreel</span>
+  <video id="showreel" playsinline muted loop preload="metadata">
+    <source src="assets/video/showreel.mp4" type="video/mp4">
+  </video>
+  <div class="sound-toggle" id="soundToggle" title="Toggle sound">
+    <svg id="iconMuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 00-2.5-4v8a4.5 4.5 0 002.5-4z" opacity=".5"/><line x1="19" y1="5" x2="5" y2="19" stroke="#fff" stroke-width="2"/></svg>
+    <svg id="iconSound" viewBox="0 0 24 24" style="display:none"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 00-2.5-4v8a4.5 4.5 0 002.5-4zM14 3.2v2.1a7 7 0 010 13.4v2.1a9 9 0 000-17.6z"/></svg>
   </div>
 </section>
 
@@ -276,17 +274,26 @@
     io.observe(el);
   });
 
-  // click to play showcase video
-  const trigger = document.getElementById('playTrigger');
-  if(trigger){
-    trigger.addEventListener('click', ()=>{
-      const sc = document.getElementById('showcase');
-      const f = document.createElement('iframe');
-      f.src = 'https://www.youtube.com/embed/9JLaDgCMjQ8?autoplay=1&rel=0&modestbranding=1';
-      f.allow = 'autoplay; encrypted-media; fullscreen';
-      f.allowFullscreen = true;
-      sc.appendChild(f);
-      trigger.style.display = 'none';
+  // showcase video: play when in view, pause when out
+  const reel = document.getElementById('showreel');
+  if(reel){
+    const vio = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ reel.play().catch(()=>{}); }
+        else { reel.pause(); }
+      });
+    },{threshold:.4});
+    vio.observe(reel);
+
+    // sound toggle
+    const toggle = document.getElementById('soundToggle');
+    const iconMuted = document.getElementById('iconMuted');
+    const iconSound = document.getElementById('iconSound');
+    toggle.addEventListener('click', ()=>{
+      reel.muted = !reel.muted;
+      iconMuted.style.display = reel.muted ? 'block' : 'none';
+      iconSound.style.display = reel.muted ? 'none' : 'block';
+      if(!reel.muted) reel.play().catch(()=>{});
     });
   }
 </script>
