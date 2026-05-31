@@ -96,9 +96,23 @@
 
   /* ---------- belief / pov ---------- */
   .pov{
+    position:relative;
+    border-top:1px solid var(--line);
+    overflow:hidden;
+  }
+  .pov-bg{position:absolute;inset:0;pointer-events:none;z-index:0;}
+  .pov-bg img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:center;
+    filter:grayscale(1) contrast(1.05);
+    opacity:0;transform:scale(1.06);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform 1.3s cubic-bezier(.2,.7,.2,1);
+  }
+  .pov-bg img.show{opacity:.15;transform:scale(1);}
+  .pov-inner{
+    position:relative;z-index:1;
     padding:clamp(90px,14vh,170px) clamp(20px,5vw,64px);
     max-width:var(--maxw);margin:0 auto;
-    border-top:1px solid var(--line);
   }
   .pov-text{
     font-family:'Erode',serif;font-weight:400;
@@ -230,8 +244,15 @@
 
 <!-- POV / BELIEF -->
 <section class="pov">
-  <p class="pov-text scroll-reveal">We believe a fearless brand is built on three things. A <span class="kw">purpose</span> worth standing for. A <span class="kw">story</span> that carries it. And the <span class="kw">direction</span> to make it real.</p>
-  <p class="pov-tail scroll-reveal">Get those right, and everything else follows.</p>
+  <div class="pov-bg">
+    <img id="bg-purpose" src="assets/images/purpose.webp" alt="">
+    <img id="bg-story" src="assets/images/story.webp" alt="">
+    <img id="bg-direction" src="assets/images/direction.webp" alt="">
+  </div>
+  <div class="pov-inner">
+    <p class="pov-text scroll-reveal">We believe a fearless brand is built on three things. A <span class="kw" data-bg="bg-purpose">purpose</span> worth standing for. A <span class="kw" data-bg="bg-story">story</span> that carries it. And the <span class="kw" data-bg="bg-direction">direction</span> to make it real.</p>
+    <p class="pov-tail scroll-reveal">Get those right, and everything else follows.</p>
+  </div>
 </section>
 
 <!-- SHOWCASE VIDEO -->
@@ -292,6 +313,14 @@
   document.querySelectorAll('.scroll-reveal').forEach((el,i)=>{
     el.dataset.delay = (i % 5) * 70;
     io.observe(el);
+  });
+
+  // POV keyword hover -> background image
+  document.querySelectorAll('.pov-text .kw').forEach(kw=>{
+    const target = document.getElementById(kw.dataset.bg);
+    if(!target) return;
+    kw.addEventListener('mouseenter', ()=>target.classList.add('show'));
+    kw.addEventListener('mouseleave', ()=>target.classList.remove('show'));
   });
 
   // showcase video: play when in view, pause when out, click to pause/resume
