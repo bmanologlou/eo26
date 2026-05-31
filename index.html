@@ -119,7 +119,7 @@
   }
   .showcase video{
     position:absolute;inset:0;width:100%;height:100%;
-    object-fit:cover;object-position:center;display:block;
+    object-fit:cover;object-position:center;display:block;cursor:pointer;
   }
   .sound-toggle{
     position:absolute;bottom:24px;right:24px;z-index:4;
@@ -274,26 +274,45 @@
     io.observe(el);
   });
 
-  // showcase video: play when in view, pause when out
+  // showcase video: play when in view, pause when out, click to pause/resume
   const reel = document.getElementById('showreel');
   if(reel){
+    let manuallyPaused = false;
+    let inView = false;
+
     const vio = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
-        if(e.isIntersecting){ reel.play().catch(()=>{}); }
-        else { reel.pause(); }
+        inView = e.isIntersecting;
+        if(inView){
+          if(!manuallyPaused) reel.play().catch(()=>{});
+        } else {
+          reel.pause();
+        }
       });
     },{threshold:.4});
     vio.observe(reel);
+
+    // click on video toggles pause/resume
+    reel.addEventListener('click', ()=>{
+      if(reel.paused){
+        manuallyPaused = false;
+        reel.play().catch(()=>{});
+      } else {
+        manuallyPaused = true;
+        reel.pause();
+      }
+    });
 
     // sound toggle
     const toggle = document.getElementById('soundToggle');
     const iconMuted = document.getElementById('iconMuted');
     const iconSound = document.getElementById('iconSound');
-    toggle.addEventListener('click', ()=>{
+    toggle.addEventListener('click', (ev)=>{
+      ev.stopPropagation();
       reel.muted = !reel.muted;
       iconMuted.style.display = reel.muted ? 'block' : 'none';
       iconSound.style.display = reel.muted ? 'none' : 'block';
-      if(!reel.muted) reel.play().catch(()=>{});
+      if(!reel.muted && inView){ manuallyPaused = false; reel.play().catch(()=>{}); }
     });
   }
 </script>
