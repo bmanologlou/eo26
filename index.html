@@ -292,13 +292,43 @@
   /* ---------- footer ---------- */
   footer{
     border-top:1px solid var(--line);
-    padding:50px clamp(20px,5vw,64px);
+    padding:clamp(60px,9vh,100px) clamp(20px,5vw,64px) 40px;
     max-width:var(--maxw);margin:0 auto;
-    display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center;
   }
-  .foot-logo{font-family:'Clash Display',sans-serif;font-weight:600;font-size:16px;}
-  .foot-links{display:flex;gap:26px;font-size:14px;color:var(--muted);}
-  .foot-links a:hover{color:var(--blue);}
+  .foot-top{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    flex-wrap:wrap;gap:40px;padding-bottom:clamp(50px,8vh,90px);
+    border-bottom:1px solid var(--line);
+  }
+  .foot-statement{
+    font-family:'Clash Display',sans-serif;font-weight:500;
+    font-size:clamp(28px,4.5vw,58px);letter-spacing:-.025em;line-height:1.04;
+    max-width:640px;
+  }
+  .foot-statement em{font-style:normal;color:var(--blue);}
+  .foot-statement a{color:var(--blue);text-decoration:none;transition:opacity .25s;}
+  .foot-statement a:hover{opacity:.6;}
+  .foot-cols{
+    display:flex;gap:clamp(40px,7vw,90px);flex-wrap:wrap;
+  }
+  .foot-col h4{
+    font-family:'Switzer',sans-serif;font-size:12px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;
+  }
+  .foot-col a{
+    display:block;font-family:'Switzer',sans-serif;font-size:15px;font-weight:500;
+    color:var(--ink);text-decoration:none;margin-bottom:10px;transition:color .25s;
+  }
+  .foot-col a:hover{color:var(--blue);}
+  .foot-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:16px;padding-top:30px;
+  }
+  .foot-logo{
+    font-family:'Clash Display',sans-serif;font-weight:600;font-size:16px;
+    display:flex;align-items:center;gap:9px;
+  }
+  .foot-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);}
   .foot-meta{font-size:13px;color:var(--muted);}
 </style>
 </head>
@@ -409,14 +439,28 @@
 </section>
 
 <footer>
-  <span class="foot-logo">Eternal Optimists</span>
-  <div class="foot-links">
-    <a href="#">Approach</a>
-    <a href="#">Work</a>
-    <a href="#">About</a>
-    <a href="https://cal.com/eternaloptimists/">Contact</a>
+  <div class="foot-top">
+    <p class="foot-statement">Have a brand worth building? <a href="https://cal.com/eternaloptimists/">Let's talk.</a></p>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Studio</h4>
+        <a href="#">Approach</a>
+        <a href="#">Work</a>
+        <a href="#">About</a>
+      </div>
+      <div class="foot-col">
+        <h4>Connect</h4>
+        <a href="https://cal.com/eternaloptimists/">Book a session</a>
+        <a href="mailto:hello@eternaloptimists.com">hello@eternaloptimists.com</a>
+        <a href="https://www.instagram.com/eternaloptimistsagency/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/company/eternaloptimists" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
   </div>
-  <span class="foot-meta">Athens · Imagine Fearless.</span>
+  <div class="foot-bottom">
+    <span class="foot-logo"><span class="dot"></span>Eternal Optimists</span>
+    <span class="foot-meta">Athens · Imagine Fearless · © 2026</span>
+  </div>
 </footer>
 
 <script>
