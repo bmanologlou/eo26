@@ -105,7 +105,27 @@
     font-size:clamp(28px,4.6vw,62px);line-height:1.18;letter-spacing:-.01em;
     max-width:1000px;
   }
-  .pov-text b{color:var(--blue);font-weight:500;font-style:italic;}
+  .pov-text .kw{
+    color:var(--blue);font-weight:500;font-style:normal;
+    position:relative;display:inline-block;cursor:default;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .pov-text .kw::after{
+    content:'';position:absolute;left:0;right:0;bottom:.06em;height:.08em;
+    background:var(--blue);transform:scaleX(0);transform-origin:left;
+    transition:transform .4s cubic-bezier(.2,.7,.2,1);
+  }
+  .pov-text .kw:hover{transform:translateY(-.06em);}
+  .pov-text .kw:hover::after{transform:scaleX(1);}
+  /* staggered keyword entrance */
+  .pov-text.in .kw{animation:kwPop .7s cubic-bezier(.2,.7,.2,1) backwards;}
+  .pov-text.in .kw:nth-of-type(1){animation-delay:.25s;}
+  .pov-text.in .kw:nth-of-type(2){animation-delay:.42s;}
+  .pov-text.in .kw:nth-of-type(3){animation-delay:.59s;}
+  @keyframes kwPop{
+    0%{color:var(--ink);opacity:.55;}
+    100%{color:var(--blue);opacity:1;}
+  }
   .pov-tail{
     font-family:'Switzer',sans-serif;font-size:clamp(16px,1.6vw,18px);
     color:var(--muted);margin-top:34px;max-width:440px;line-height:1.5;
@@ -210,7 +230,7 @@
 
 <!-- POV / BELIEF -->
 <section class="pov">
-  <p class="pov-text scroll-reveal">We believe a fearless brand is built on three things. A <b>purpose</b> worth standing for. A <b>story</b> that carries it. And the <b>direction</b> to make it real.</p>
+  <p class="pov-text scroll-reveal">We believe a fearless brand is built on three things. A <span class="kw">purpose</span> worth standing for. A <span class="kw">story</span> that carries it. And the <span class="kw">direction</span> to make it real.</p>
   <p class="pov-tail scroll-reveal">Get those right, and everything else follows.</p>
 </section>
 
