@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eternal Optimists — Independent Brand Studio</title>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=erode@400,500&f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#1414BE;
+    --blue-soft:#3a3ad6;
+    --ink:#0c0c12;
+    --paper:#ffffff;
+    --paper-2:#f6f5f2;
+    --line:rgba(12,12,18,.12);
+    --muted:#6a6a72;
+    --maxw:1280px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  ::selection{background:var(--blue);color:#fff;}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'Switzer',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px clamp(20px,5vw,64px);
+    mix-blend-mode:difference;
+  }
+  .logo{
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:18px;letter-spacing:-.01em;color:#fff;
+    display:flex;align-items:center;gap:9px;
+  }
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:#fff;display:inline-block;}
+  nav{display:flex;gap:30px;}
+  nav a{
+    font-size:14px;font-weight:500;color:#fff;letter-spacing:.01em;
+    position:relative;
+  }
+  nav a::after{
+    content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:#fff;transition:width .3s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-cta{
+    border:1px solid #fff;border-radius:999px;padding:8px 16px;
+  }
+  @media(max-width:720px){ nav .nav-link{display:none;} }
+
+  /* ---------- reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(24px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;}
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+  .d1{animation-delay:.05s;} .d2{animation-delay:.18s;} .d3{animation-delay:.31s;}
+  .d4{animation-delay:.44s;} .d5{animation-delay:.57s;} .d6{animation-delay:.7s;}
+
+  .scroll-reveal{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1);}
+  .scroll-reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding:140px clamp(20px,5vw,64px) 60px;
+    max-width:var(--maxw);margin:0 auto;position:relative;
+  }
+  .hero-eyebrow{
+    font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--blue);margin-bottom:34px;display:flex;align-items:center;gap:10px;
+  }
+  .hero-eyebrow::before{content:'';width:30px;height:1.5px;background:var(--blue);}
+  h1{
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(56px,13vw,200px);line-height:.92;letter-spacing:-.03em;
+  }
+  h1 em{font-style:normal;color:var(--blue);}
+  .hero-sub{
+    font-family:'Switzer',sans-serif;font-weight:500;
+    font-size:clamp(17px,2vw,22px);line-height:1.5;max-width:560px;
+    margin-top:36px;color:#28282e;
+  }
+  .hero-bottom{
+    position:absolute;left:clamp(20px,5vw,64px);right:clamp(20px,5vw,64px);bottom:40px;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
+  }
+  .scroll-hint{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:9px;}
+  .scroll-hint .arrow{display:inline-block;animation:bob 2s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+  .hero-meta{font-size:13px;color:var(--muted);text-align:right;line-height:1.6;}
+
+  /* ---------- belief / pov ---------- */
+  .pov{
+    padding:clamp(90px,14vh,170px) clamp(20px,5vw,64px);
+    max-width:var(--maxw);margin:0 auto;
+    border-top:1px solid var(--line);
+  }
+  .pov-text{
+    font-family:'Erode',serif;font-weight:400;
+    font-size:clamp(28px,4.6vw,62px);line-height:1.18;letter-spacing:-.01em;
+    max-width:1000px;
+  }
+  .pov-text b{color:var(--blue);font-weight:500;font-style:italic;}
+  .pov-tail{
+    font-family:'Switzer',sans-serif;font-size:clamp(16px,1.6vw,18px);
+    color:var(--muted);margin-top:34px;max-width:440px;line-height:1.5;
+  }
+
+  /* ---------- showcase video ---------- */
+  .showcase{
+    width:100%;height:clamp(60vh,82vh,900px);
+    background:linear-gradient(135deg,#0c0c12,#1a1a2e 60%,var(--blue));
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .showcase::after{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 30% 40%,rgba(255,255,255,.06),transparent 50%);
+  }
+  .showcase-inner{position:relative;z-index:2;text-align:center;color:#fff;cursor:pointer;}
+  .showcase iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:3;}
+  .play{
+    width:84px;height:84px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 24px;
+    transition:all .3s ease;cursor:pointer;backdrop-filter:blur(4px);
+  }
+  .play:hover{background:#fff;border-color:#fff;transform:scale(1.06);}
+  .play svg{width:26px;height:26px;fill:#fff;margin-left:4px;transition:fill .3s;}
+  .play:hover svg{fill:var(--ink);}
+  .showcase-label{font-size:13px;letter-spacing:.16em;text-transform:uppercase;opacity:.75;}
+  .showcase-note{
+    position:absolute;bottom:22px;left:0;right:0;text-align:center;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);z-index:2;
+  }
+
+  /* ---------- what we do strip ---------- */
+  .strip{
+    padding:clamp(70px,10vh,120px) clamp(20px,5vw,64px);
+    max-width:var(--maxw);margin:0 auto;
+    display:flex;flex-wrap:wrap;gap:14px 40px;align-items:baseline;
+    border-bottom:1px solid var(--line);
+  }
+  .strip-label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);width:100%;margin-bottom:18px;}
+  .strip-item{
+    font-family:'Clash Display',sans-serif;font-weight:500;
+    font-size:clamp(28px,5vw,58px);letter-spacing:-.02em;color:var(--ink);
+    transition:color .3s ease;cursor:default;
+  }
+  .strip-item:hover{color:var(--blue);}
+  .strip-sep{color:var(--line);font-size:clamp(28px,5vw,58px);}
+
+  /* ---------- close / CTA ---------- */
+  .close{
+    padding:clamp(90px,16vh,180px) clamp(20px,5vw,64px);
+    max-width:var(--maxw);margin:0 auto;text-align:center;
+  }
+  .close h2{
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(34px,6vw,86px);line-height:1.02;letter-spacing:-.025em;
+    max-width:900px;margin:0 auto;
+  }
+  .close h2 em{font-style:normal;color:var(--blue);}
+  .btn{
+    display:inline-flex;align-items:center;gap:11px;margin-top:46px;
+    font-family:'Switzer',sans-serif;font-weight:600;font-size:16px;color:#fff;
+    background:var(--blue);padding:17px 34px;border-radius:999px;
+    transition:transform .25s ease,background .25s ease;
+  }
+  .btn:hover{transform:translateY(-3px);background:var(--ink);}
+  .btn svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;transition:transform .25s;}
+  .btn:hover svg{transform:translate(3px,-3px);}
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:50px clamp(20px,5vw,64px);
+    max-width:var(--maxw);margin:0 auto;
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center;
+  }
+  .foot-logo{font-family:'Clash Display',sans-serif;font-weight:600;font-size:16px;}
+  .foot-links{display:flex;gap:26px;font-size:14px;color:var(--muted);}
+  .foot-links a:hover{color:var(--blue);}
+  .foot-meta{font-size:13px;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#" class="logo"><span class="dot"></span>Eternal Optimists</a>
+  <nav>
+    <a href="#" class="nav-link">Approach</a>
+    <a href="#" class="nav-link">Work</a>
+    <a href="#" class="nav-link">About</a>
+    <a href="https://cal.com/eternaloptimists/" class="nav-cta">Book a session</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow reveal d1">Independent brand studio</span>
+  <h1 class="reveal d2">Imagine <em>Fearless.</em></h1>
+  <p class="hero-sub reveal d3">We're an independent brand studio. We think first, then build. Brands with the clarity to stand for something and the confidence to show it.</p>
+  <div class="hero-bottom reveal d5">
+    <span class="scroll-hint"><span class="arrow">↓</span> Scroll</span>
+    <span class="hero-meta">Strategy · Identity<br>Design · Experience</span>
+  </div>
+</section>
+
+<!-- POV / BELIEF -->
+<section class="pov">
+  <p class="pov-text scroll-reveal">We believe a fearless brand is built on three things. A <b>purpose</b> worth standing for. A <b>story</b> that carries it. And the <b>direction</b> to make it real.</p>
+  <p class="pov-tail scroll-reveal">Get those right, and everything else follows.</p>
+</section>
+
+<!-- SHOWCASE VIDEO -->
+<section class="showcase scroll-reveal" id="showcase">
+  <div class="showcase-inner" id="playTrigger">
+    <div class="play">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </div>
+    <span class="showcase-label">Watch the showreel</span>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="strip">
+  <span class="strip-label scroll-reveal">What we do</span>
+  <span class="strip-item scroll-reveal">Strategy</span>
+  <span class="strip-sep scroll-reveal">/</span>
+  <span class="strip-item scroll-reveal">Identity</span>
+  <span class="strip-sep scroll-reveal">/</span>
+  <span class="strip-item scroll-reveal">Design</span>
+  <span class="strip-sep scroll-reveal">/</span>
+  <span class="strip-item scroll-reveal">Experience</span>
+</section>
+
+<!-- CLOSE -->
+<section class="close">
+  <h2 class="scroll-reveal">Have something <em>worth building?</em> Let's start with a conversation.</h2>
+  <a href="https://cal.com/eternaloptimists/" class="btn scroll-reveal">
+    Book a session
+    <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+  </a>
+</section>
+
+<footer>
+  <span class="foot-logo">Eternal Optimists</span>
+  <div class="foot-links">
+    <a href="#">Approach</a>
+    <a href="#">Work</a>
+    <a href="#">About</a>
+    <a href="https://cal.com/eternaloptimists/">Contact</a>
+  </div>
+  <span class="foot-meta">Athens · Imagine Fearless.</span>
+</footer>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        const el = e.target;
+        // small natural stagger for groups
+        setTimeout(()=>el.classList.add('in'), (el.dataset.delay?+el.dataset.delay:0));
+        io.unobserve(el);
+      }
+    });
+  },{threshold:.15});
+  document.querySelectorAll('.scroll-reveal').forEach((el,i)=>{
+    el.dataset.delay = (i % 5) * 70;
+    io.observe(el);
+  });
+
+  // click to play showcase video
+  const trigger = document.getElementById('playTrigger');
+  if(trigger){
+    trigger.addEventListener('click', ()=>{
+      const sc = document.getElementById('showcase');
+      const f = document.createElement('iframe');
+      f.src = 'https://www.youtube.com/embed/9JLaDgCMjQ8?autoplay=1&rel=0&modestbranding=1';
+      f.allow = 'autoplay; encrypted-media; fullscreen';
+      f.allowFullscreen = true;
+      sc.appendChild(f);
+      trigger.style.display = 'none';
+    });
+  }
+</script>
+
+</body>
+</html>
