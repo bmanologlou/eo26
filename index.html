@@ -53,7 +53,39 @@
     transition:opacity .25s ease;
   }
   .nav-cta:hover{opacity:.55;}
-  @media(max-width:720px){ nav .nav-link{display:none;} }
+  /* burger */
+  .burger{
+    display:none;flex-direction:column;justify-content:center;gap:6px;
+    width:34px;height:34px;cursor:pointer;background:none;border:none;padding:0;
+  }
+  .burger span{
+    display:block;width:26px;height:2px;background:#fff;border-radius:2px;
+    transition:transform .3s ease,opacity .3s ease;
+  }
+  body.menu-open .burger span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+  body.menu-open .burger span:nth-child(2){transform:translateY(-8px) rotate(-45deg);}
+
+  /* mobile overlay menu */
+  .mobile-menu{
+    position:fixed;inset:0;z-index:90;
+    background:var(--ink);
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 clamp(20px,8vw,64px);
+    opacity:0;visibility:hidden;transform:translateY(-12px);
+    transition:opacity .4s ease,transform .4s ease,visibility .4s;
+  }
+  body.menu-open .mobile-menu{opacity:1;visibility:visible;transform:translateY(0);}
+  .mobile-menu a{
+    font-family:'Clash Display',sans-serif;font-weight:500;color:#fff;
+    font-size:clamp(34px,9vw,56px);letter-spacing:-.02em;line-height:1.4;
+    text-decoration:none;
+  }
+  .mobile-menu a.m-cta{color:var(--blue);}
+
+  @media(max-width:720px){
+    nav .nav-link, nav .nav-cta{display:none;}
+    .burger{display:flex;}
+  }
 
   /* ---------- reveal animation ---------- */
   .reveal{opacity:0;transform:translateY(24px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;}
@@ -222,8 +254,18 @@
     <a href="#" class="nav-link">Work</a>
     <a href="#" class="nav-link">About</a>
     <a href="https://cal.com/eternaloptimists/" class="nav-cta">Book a session</a>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
   </nav>
 </header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#">Approach</a>
+  <a href="#">Work</a>
+  <a href="#">About</a>
+  <a href="https://cal.com/eternaloptimists/" class="m-cta">Book a session</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -308,6 +350,18 @@
     el.dataset.delay = (i % 5) * 70;
     io.observe(el);
   });
+
+  // burger / mobile menu
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(burger){
+    burger.addEventListener('click', ()=>{
+      document.body.classList.toggle('menu-open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=>document.body.classList.remove('menu-open'));
+    });
+  }
 
   // POV keyword hover -> background image
   document.querySelectorAll('.pov-text .kw').forEach(kw=>{
