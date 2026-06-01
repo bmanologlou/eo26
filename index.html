@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eternal Optimists — Independent Brand Studio</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=erode@400,500&f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
 <style>
@@ -41,6 +42,9 @@
     display:flex;align-items:center;gap:9px;
   }
   .logo .mark{height:20px;width:auto;display:inline-block;color:inherit;}
+  .logo-short{display:none;}
+  body.scrolled .logo-full{display:none;}
+  body.scrolled .logo-short{display:inline;}
   nav{display:flex;gap:30px;align-items:center;}
   nav a{
     font-size:14px;font-weight:500;color:#fff;letter-spacing:.01em;
@@ -61,10 +65,10 @@
     mix-blend-mode:difference;
   }
   .burger .dot-btn{
-    width:13px;height:13px;border-radius:50%;background:#fff;
+    width:20px;height:20px;border-radius:50%;background:#fff;
     transition:transform .3s ease;
   }
-  .burger:hover .dot-btn{transform:scale(1.25);}
+  .burger:hover .dot-btn{transform:scale(1.15);}
 
   /* circular reveal overlay */
   .mobile-menu{
@@ -77,15 +81,15 @@
   body.menu-open{overflow:hidden;}
   .mobile-menu::before{
     content:'';position:fixed;
-    top:18px;right:clamp(8px,3vw,28px);
-    width:26px;height:26px;border-radius:50%;
+    top:14px;right:clamp(8px,3vw,28px);
+    width:20px;height:20px;border-radius:50%;
     background:#e7e8ea;
     transform:scale(0);transform-origin:center;
     transition:transform .7s cubic-bezier(.76,0,.24,1);
     z-index:-1;
   }
   body.menu-open .mobile-menu{visibility:visible;}
-  body.menu-open .mobile-menu::before{transform:scale(170);}
+  body.menu-open .mobile-menu::before{transform:scale(220);}
   .mobile-menu a{
     font-family:'Clash Display',sans-serif;font-weight:500;color:var(--ink);
     font-size:clamp(38px,11vw,68px);letter-spacing:-.02em;line-height:1.25;
@@ -269,7 +273,7 @@
   }
   .work-card{display:block;cursor:pointer;}
   .work-thumb{
-    aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:var(--paper-2);
+    aspect-ratio:4/5;border-radius:10px;overflow:hidden;background:var(--paper-2);
     position:relative;
   }
   .work-thumb img{
@@ -353,7 +357,7 @@
 <body>
 
 <header>
-  <a href="#" class="logo"><svg class="mark" viewBox="0 0 312 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" fill-rule="nonzero" d="M90,45 C90,40.3341014 89.3001152,35.8496544 87.9781106,31.624424 C82.2753456,13.2978111 65.1929724,0 45,0 C41.1117512,0 37.3531106,0.492511521 33.75,1.42569124 C15.0086406,6.27304147 0,23.6592742 0,45 C0,69.858871 20.141129,90 45,90 C69.858871,90 90,69.858871 90,45 Z M76.6762673,45 C59.1791475,45 45.0259217,59.1791475 45,76.6762673 C45,59.2050691 30.8208525,45.0259217 13.3237327,45.0259217 C30.7949309,45.0259217 44.9740783,30.8467742 44.9740783,13.3496544 C45,30.8208525 59.1791475,45 76.6762673,45 Z M155.529954,0 C130.671083,0 110.529954,20.141129 110.529954,45 C110.529954,69.858871 130.671083,90 155.529954,90 L155.529954,45 L200.529954,45 C200.529954,20.141129 180.388825,0 155.529954,0 Z M221.059908,0 L221.059908,90 L311.059908,90 L311.059908,0 L221.059908,0 Z M266.059908,60.7085253 C257.402074,60.7085253 250.351382,53.6837558 250.351382,45 C250.351382,36.3421659 257.376152,29.2914747 266.059908,29.2914747 C274.743664,29.2914747 281.768433,36.3162442 281.768433,45 C281.768433,53.6837558 274.717742,60.7085253 266.059908,60.7085253 Z"/></svg>Eternal Optimists</a>
+  <a href="#" class="logo"><svg class="mark" viewBox="0 0 312 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" fill-rule="nonzero" d="M90,45 C90,40.3341014 89.3001152,35.8496544 87.9781106,31.624424 C82.2753456,13.2978111 65.1929724,0 45,0 C41.1117512,0 37.3531106,0.492511521 33.75,1.42569124 C15.0086406,6.27304147 0,23.6592742 0,45 C0,69.858871 20.141129,90 45,90 C69.858871,90 90,69.858871 90,45 Z M76.6762673,45 C59.1791475,45 45.0259217,59.1791475 45,76.6762673 C45,59.2050691 30.8208525,45.0259217 13.3237327,45.0259217 C30.7949309,45.0259217 44.9740783,30.8467742 44.9740783,13.3496544 C45,30.8208525 59.1791475,45 76.6762673,45 Z M155.529954,0 C130.671083,0 110.529954,20.141129 110.529954,45 C110.529954,69.858871 130.671083,90 155.529954,90 L155.529954,45 L200.529954,45 C200.529954,20.141129 180.388825,0 155.529954,0 Z M221.059908,0 L221.059908,90 L311.059908,90 L311.059908,0 L221.059908,0 Z M266.059908,60.7085253 C257.402074,60.7085253 250.351382,53.6837558 250.351382,45 C250.351382,36.3421659 257.376152,29.2914747 266.059908,29.2914747 C274.743664,29.2914747 281.768433,36.3162442 281.768433,45 C281.768433,53.6837558 274.717742,60.7085253 266.059908,60.7085253 Z"/></svg><span class="logo-full">Eternal Optimists</span><span class="logo-short">EO</span></a>
   <nav>
     <a href="#" class="nav-link">Work</a>
     <a href="#" class="nav-link">Approach</a>
@@ -484,6 +488,16 @@
     el.dataset.delay = (i % 5) * 70;
     io.observe(el);
   });
+
+  // shrink logo to EO after scroll
+  let scrolled=false;
+  window.addEventListener('scroll', ()=>{
+    const past = window.scrollY > window.innerHeight * 0.6;
+    if(past !== scrolled){
+      scrolled = past;
+      document.body.classList.toggle('scrolled', scrolled);
+    }
+  }, {passive:true});
 
   // burger / mobile menu
   const burger = document.getElementById('burger');
