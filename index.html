@@ -328,20 +328,19 @@
   }
   .foot-close h2 em{font-style:normal;color:var(--blue);}
   .foot-bottom{
-    display:flex;justify-content:space-between;align-items:center;
-    flex-wrap:wrap;gap:18px;padding-top:34px;border-top:1px solid var(--line);
+    display:flex;flex-direction:column;gap:28px;
+    padding-top:34px;border-top:1px solid var(--line);
   }
-  .foot-logo{
-    font-family:'Clash Display',sans-serif;font-weight:600;font-size:16px;
-    display:flex;align-items:center;gap:9px;
-  }
-  .foot-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);}
-  .foot-social{display:flex;gap:24px;}
+  .foot-social{display:flex;gap:24px;flex-wrap:wrap;}
   .foot-social a{
     font-family:'Switzer',sans-serif;font-size:14px;font-weight:500;
     color:var(--ink);text-decoration:none;transition:color .25s;
   }
   .foot-social a:hover{color:var(--blue);}
+  .foot-legal{
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:12px;
+  }
   .foot-meta{font-size:13px;color:var(--muted);}
   .foot-policies{
     font-family:'Switzer',sans-serif;font-size:14px;font-weight:500;
@@ -349,7 +348,7 @@
   }
   .foot-policies:hover{color:var(--blue);}
   @media(max-width:720px){
-    .foot-bottom{flex-direction:column;align-items:flex-start;gap:22px;}
+    .foot-bottom{gap:24px;}
   }
 </style>
 </head>
@@ -459,13 +458,15 @@
     </a>
   </div>
   <div class="foot-bottom">
-    <span class="foot-meta">© 2022—2026 Eternal Optimists</span>
     <div class="foot-social">
       <a href="https://www.behance.net/EternalOptimists" target="_blank" rel="noopener">Behance</a>
       <a href="https://www.instagram.com/eternaloptimistsagency/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.linkedin.com/company/eternaloptimists/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
-    <a href="#" class="foot-policies">Policies</a>
+    <div class="foot-legal">
+      <span class="foot-meta">© 2012—2026 Eternal Optimists</span>
+      <a href="#" class="foot-policies">Policies</a>
+    </div>
   </div>
 </footer>
 
