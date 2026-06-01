@@ -57,7 +57,7 @@
   .burger{
     display:none;align-items:center;justify-content:center;
     width:40px;height:40px;cursor:pointer;background:none;border:none;padding:0;
-    position:fixed;top:12px;right:clamp(12px,4vw,36px);z-index:110;
+    position:fixed;top:12px;right:clamp(8px,3vw,28px);z-index:110;
     mix-blend-mode:difference;
   }
   .burger .dot-btn{
@@ -76,9 +76,9 @@
   }
   .mobile-menu::before{
     content:'';position:fixed;
-    top:18px;right:clamp(12px,4vw,36px);
+    top:18px;right:clamp(8px,3vw,28px);
     width:26px;height:26px;border-radius:50%;
-    background:var(--paper-2);
+    background:#efece4;
     transform:scale(0);transform-origin:center;
     transition:transform .7s cubic-bezier(.76,0,.24,1);
     z-index:-1;
