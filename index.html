@@ -68,12 +68,13 @@
 
   /* circular reveal overlay */
   .mobile-menu{
-    position:fixed;inset:0;z-index:95;
+    position:fixed;top:0;left:0;right:0;bottom:0;height:100dvh;z-index:95;
     display:flex;flex-direction:column;justify-content:center;
     padding:0 clamp(28px,10vw,64px);
-    visibility:hidden;
+    visibility:hidden;overflow:hidden;
     transition:visibility .8s;
   }
+  body.menu-open{overflow:hidden;}
   .mobile-menu::before{
     content:'';position:fixed;
     top:18px;right:clamp(8px,3vw,28px);
