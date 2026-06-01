@@ -57,14 +57,14 @@
   .burger{
     display:none;align-items:center;justify-content:center;
     width:40px;height:40px;cursor:pointer;background:none;border:none;padding:0;
-    position:fixed;top:20px;right:clamp(16px,5vw,40px);z-index:110;
+    position:fixed;top:12px;right:clamp(12px,4vw,36px);z-index:110;
+    mix-blend-mode:difference;
   }
   .burger .dot-btn{
-    width:13px;height:13px;border-radius:50%;background:var(--blue);
-    transition:transform .3s ease,background .3s ease;
+    width:13px;height:13px;border-radius:50%;background:#fff;
+    transition:transform .3s ease;
   }
   .burger:hover .dot-btn{transform:scale(1.25);}
-  body.menu-open .burger .dot-btn{background:#fff;}
 
   /* circular reveal overlay */
   .mobile-menu{
@@ -76,9 +76,9 @@
   }
   .mobile-menu::before{
     content:'';position:fixed;
-    top:26px;right:clamp(16px,5vw,40px);
+    top:18px;right:clamp(12px,4vw,36px);
     width:26px;height:26px;border-radius:50%;
-    background:var(--blue);
+    background:var(--paper-2);
     transform:scale(0);transform-origin:center;
     transition:transform .7s cubic-bezier(.76,0,.24,1);
     z-index:-1;
@@ -86,7 +86,7 @@
   body.menu-open .mobile-menu{visibility:visible;}
   body.menu-open .mobile-menu::before{transform:scale(170);}
   .mobile-menu a{
-    font-family:'Clash Display',sans-serif;font-weight:500;color:#fff;
+    font-family:'Clash Display',sans-serif;font-weight:500;color:var(--ink);
     font-size:clamp(38px,11vw,68px);letter-spacing:-.02em;line-height:1.25;
     text-decoration:none;
     opacity:0;transform:translateY(40px);
@@ -100,7 +100,10 @@
   body.menu-open .mobile-menu a:nth-child(2){transition-delay:.58s;}
   body.menu-open .mobile-menu a:nth-child(3){transition-delay:.66s;}
   body.menu-open .mobile-menu a:nth-child(4){transition-delay:.74s;}
-  .mobile-menu a.m-cta{opacity:1;color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:.3em .9em;font-size:clamp(20px,5vw,28px);align-self:flex-start;margin-top:24px;}
+  .mobile-menu a.m-cta{
+    color:var(--blue);font-size:clamp(20px,5vw,26px);
+    margin-top:28px;font-family:'Switzer',sans-serif;font-weight:600;
+  }
 
   @media(max-width:720px){
     nav .nav-link, nav .nav-cta{display:none;}
@@ -361,7 +364,7 @@
   <a href="#">Approach</a>
   <a href="#">Work</a>
   <a href="#">About</a>
-  <a href="https://cal.com/eternaloptimists/" class="m-cta">Book a session</a>
+  <a href="https://cal.com/eternaloptimists/" class="m-cta">Let's talk</a>
 </div>
 
 <!-- HERO -->
