@@ -268,6 +268,32 @@
     display:inline-flex;align-items:center;gap:8px;transition:gap .25s ease;
   }
   .featured-head a:hover{gap:14px;}
+  /* feature project: image left (4/5), text right */
+  .work-feature{
+    display:grid;grid-template-columns:2fr 3fr;gap:clamp(28px,5vw,72px);
+    align-items:center;margin-bottom:clamp(40px,6vh,80px);
+  }
+  .feature-card{display:block;cursor:pointer;max-width:440px;}
+  .feature-text{max-width:560px;}
+  .feature-services{
+    font-family:'Switzer',sans-serif;font-size:13px;font-weight:600;
+    letter-spacing:.06em;color:var(--blue);margin-bottom:18px;
+  }
+  .feature-name{
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(34px,4.5vw,64px);letter-spacing:-.025em;line-height:1;margin-bottom:22px;
+  }
+  .feature-desc{
+    font-family:'Erode',serif;font-size:clamp(16px,1.4vw,19px);
+    line-height:1.55;color:#33333a;margin-bottom:28px;
+  }
+  .feature-link{
+    font-family:'Switzer',sans-serif;font-weight:600;font-size:15px;color:var(--ink);
+    display:inline-flex;align-items:center;gap:8px;transition:gap .25s ease,color .25s ease;
+  }
+  .feature-card:hover ~ .feature-text .feature-link,
+  .feature-link:hover{color:var(--blue);gap:13px;}
+
   .work-grid{
     display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);
   }
@@ -293,6 +319,9 @@
   @media(max-width:720px){
     .work-grid{grid-template-columns:1fr;gap:36px;}
     .work-thumb{aspect-ratio:4/5;}
+    .work-feature{grid-template-columns:1fr;gap:24px;margin-bottom:36px;}
+    .feature-card{max-width:none;}
+    .feature-name{margin-bottom:16px;}
   }
 
   /* ---------- close / CTA ---------- */
@@ -424,14 +453,20 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
     </a>
   </div>
-  <div class="work-grid">
-    <a href="#" class="work-card scroll-reveal">
+  <div class="work-feature">
+    <a href="#" class="feature-card scroll-reveal">
       <div class="work-thumb"><img src="assets/work/sleepnlife.webp" alt="SleepnLife"></div>
-      <div class="work-meta">
-        <div class="work-name">SleepnLife</div>
-        <div class="work-line">A brand that makes rest feel like a good day waiting to happen.</div>
-      </div>
     </a>
+    <div class="feature-text scroll-reveal">
+      <div class="feature-services">Strategy · Identity · Design</div>
+      <h3 class="feature-name">SleepnLife</h3>
+      <p class="feature-desc">A sleep brand reframed around the morning, not the night. We built a strategy and identity that makes rest feel like a good day waiting to happen, from positioning and tagline to a complete visual language.</p>
+      <span class="feature-link">View project
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+      </span>
+    </div>
+  </div>
+  <div class="work-grid">
     <a href="#" class="work-card scroll-reveal">
       <div class="work-thumb"><img src="assets/work/edupaths.webp" alt="EduPaths"></div>
       <div class="work-meta">
@@ -444,6 +479,13 @@
       <div class="work-meta">
         <div class="work-name">Groowise</div>
         <div class="work-line">Growth, made clear enough to act on.</div>
+      </div>
+    </a>
+    <a href="#" class="work-card scroll-reveal">
+      <div class="work-thumb"><img src="assets/work/sleepnlife.webp" alt="Project four"></div>
+      <div class="work-meta">
+        <div class="work-name">Project Four</div>
+        <div class="work-line">A short line that captures the idea behind the work.</div>
       </div>
     </a>
   </div>
