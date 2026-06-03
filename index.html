@@ -177,6 +177,11 @@
     display:block;font-family:'Switzer',sans-serif;font-size:13px;font-weight:600;
     letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:34px;
   }
+  /* unified slash label */
+  .label{
+    display:block;font-family:'Switzer',sans-serif;font-size:13px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:40px;
+  }
   .pov-text{
     font-family:'Erode',serif;font-weight:400;
     font-size:clamp(28px,4.6vw,62px);line-height:1.18;letter-spacing:-.01em;
@@ -259,7 +264,7 @@
     max-width:var(--maxw);margin:0 auto;
   }
   .featured-head{
-    display:flex;justify-content:space-between;align-items:baseline;
+    display:flex;justify-content:space-between;align-items:center;
     flex-wrap:wrap;gap:16px;margin-bottom:48px;
   }
   .featured-head h2{
@@ -440,7 +445,7 @@
     <img id="bg-direction" src="assets/images/direction.webp" alt="">
   </div>
   <div class="pov-inner">
-    <span class="pov-label scroll-reveal">/Our Belief</span>
+    <span class="label scroll-reveal">/Our Belief</span>
     <p class="pov-text scroll-reveal">We believe a fearless brand is built on three things. A <span class="kw" data-bg="bg-purpose">purpose</span> worth standing for. A <span class="kw" data-bg="bg-story">story</span> that carries it. And the <span class="kw" data-bg="bg-direction">direction</span> to make it real.</p>
     <p class="pov-tail scroll-reveal">Get those right, and everything else follows. Most brands have at least one of the three. The fearless ones have all three working together, pulling in the same direction. That alignment is what we build, where strategy, creativity and innovation come together as one idea.</p>
     <a href="#" class="text-link pov-btn scroll-reveal">Our Approach
@@ -462,7 +467,7 @@
 
 <!-- WHAT WE DO -->
 <section class="strip">
-  <span class="strip-label scroll-reveal">/What We Do</span>
+  <span class="label scroll-reveal">/What We Do</span>
   <div class="strip-list">
     <div class="strip-row scroll-reveal"><span class="num">01</span><span class="name">Strategy</span></div>
     <div class="strip-row scroll-reveal"><span class="num">02</span><span class="name">Identity</span></div>
@@ -474,7 +479,7 @@
 <!-- FEATURED WORK -->
 <section class="featured">
   <div class="featured-head">
-    <h2 class="scroll-reveal">Selected work</h2>
+    <span class="label scroll-reveal" style="margin-bottom:0">/Selected Work</span>
     <a href="#" class="text-link scroll-reveal">See All Work
       <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
     </a>
