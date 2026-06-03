@@ -174,6 +174,10 @@
     padding:clamp(90px,14vh,170px) clamp(20px,5vw,64px);
     max-width:var(--maxw);margin:0 auto;
   }
+  .pov-label{
+    display:block;font-family:'Switzer',sans-serif;font-size:13px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:34px;
+  }
   .pov-text{
     font-family:'Erode',serif;font-weight:400;
     font-size:clamp(28px,4.6vw,62px);line-height:1.18;letter-spacing:-.01em;
@@ -196,8 +200,14 @@
   }
   .pov-tail{
     font-family:'Switzer',sans-serif;font-size:clamp(16px,1.6vw,18px);
-    color:var(--muted);margin-top:34px;max-width:440px;line-height:1.5;
+    color:var(--muted);margin-top:34px;max-width:620px;line-height:1.6;
   }
+  .pov-btn{
+    display:inline-flex;align-items:center;gap:8px;margin-top:30px;
+    font-family:'Switzer',sans-serif;font-weight:600;font-size:14px;color:var(--ink);
+    transition:gap .25s ease,color .25s ease;
+  }
+  .pov-btn:hover{color:var(--blue);gap:13px;}
 
   /* ---------- showcase video ---------- */
   .showcase{
@@ -228,8 +238,7 @@
     padding:clamp(70px,12vh,140px) clamp(20px,5vw,64px);
     max-width:var(--maxw);margin:0 auto;
   }
-  .strip-label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:34px;display:flex;align-items:center;gap:10px;}
-  .strip-label::before{content:'';width:30px;height:1.5px;background:var(--muted);}
+  .strip-label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:34px;font-family:'Switzer',sans-serif;font-weight:600;}
   .strip-list{display:flex;flex-direction:column;}
   .strip-row{
     display:flex;align-items:baseline;gap:clamp(14px,2vw,28px);
@@ -316,12 +325,14 @@
     font-family:'Erode',serif;font-size:15px;color:var(--muted);
     margin-top:4px;line-height:1.4;
   }
+  .feature-mobile-meta{display:none;}
   @media(max-width:720px){
     .work-grid{grid-template-columns:1fr;gap:36px;}
     .work-thumb{aspect-ratio:4/5;}
-    .work-feature{grid-template-columns:1fr;gap:24px;margin-bottom:36px;}
+    .work-feature{display:block;margin-bottom:36px;}
     .feature-card{max-width:none;}
-    .feature-name{margin-bottom:16px;}
+    .feature-text{display:none;}
+    .feature-mobile-meta{display:block;}
   }
 
   /* ---------- close / CTA ---------- */
@@ -338,10 +349,10 @@
   .btn{
     display:inline-flex;align-items:center;gap:9px;margin-top:40px;
     font-family:'Switzer',sans-serif;font-weight:600;font-size:14px;color:#fff;
-    background:var(--blue);padding:13px 26px;border-radius:999px;
-    transition:transform .25s ease,background .25s ease;
+    background:var(--ink);padding:13px 26px;border-radius:999px;
+    transition:background .25s ease;
   }
-  .btn:hover{transform:translateY(-3px);background:var(--ink);}
+  .btn:hover{background:var(--blue);}
   .btn svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;transition:transform .25s;}
   .btn:hover svg{transform:translate(3px,-3px);}
 
@@ -418,8 +429,12 @@
     <img id="bg-direction" src="assets/images/direction.webp" alt="">
   </div>
   <div class="pov-inner">
+    <span class="pov-label scroll-reveal">/Our Belief</span>
     <p class="pov-text scroll-reveal">We believe a fearless brand is built on three things. A <span class="kw" data-bg="bg-purpose">purpose</span> worth standing for. A <span class="kw" data-bg="bg-story">story</span> that carries it. And the <span class="kw" data-bg="bg-direction">direction</span> to make it real.</p>
-    <p class="pov-tail scroll-reveal">Get those right, and everything else follows.</p>
+    <p class="pov-tail scroll-reveal">Get those right, and everything else follows. Most brands have at least one of the three. The fearless ones have all three working together, pulling in the same direction. That alignment is what we build, and it's where strategy, identity and design stop being separate things and start being one idea.</p>
+    <a href="#" class="pov-btn scroll-reveal">Our approach
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+    </a>
   </div>
 </section>
 
@@ -436,7 +451,7 @@
 
 <!-- WHAT WE DO -->
 <section class="strip">
-  <span class="strip-label scroll-reveal">What we do</span>
+  <span class="strip-label scroll-reveal">/What We Do</span>
   <div class="strip-list">
     <div class="strip-row scroll-reveal"><span class="num">01</span><span class="name">Strategy</span></div>
     <div class="strip-row scroll-reveal"><span class="num">02</span><span class="name">Identity</span></div>
@@ -456,6 +471,10 @@
   <div class="work-feature">
     <a href="#" class="feature-card scroll-reveal">
       <div class="work-thumb"><img src="assets/work/sleepnlife.webp" alt="SleepnLife"></div>
+      <div class="work-meta feature-mobile-meta">
+        <div class="work-name">SleepnLife</div>
+        <div class="work-line">A brand that makes rest feel like a good day waiting to happen.</div>
+      </div>
     </a>
     <div class="feature-text scroll-reveal">
       <div class="feature-services">Strategy · Identity · Design</div>
