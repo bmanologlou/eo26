@@ -166,10 +166,17 @@
   h1 em{font-style:normal;color:var(--blue);}
   .rotator{
     display:inline-block;
-    transition:opacity .5s cubic-bezier(.33,0,.2,1),transform .5s cubic-bezier(.33,0,.2,1);
+    transition:opacity .35s ease;
   }
-  .rotator.out{opacity:0;transform:translateY(-.6em);}    /* leaving upward */
-  .rotator.in-prep{opacity:0;transform:translateY(.6em);} /* arriving from below */
+  .rotator.fade-out{opacity:0;}
+  .rotator::after{
+    content:'';display:inline-block;width:.06em;height:.9em;
+    background:var(--blue);margin-left:.04em;vertical-align:baseline;
+    transform:translateY(.08em);
+    animation:caret .8s step-end infinite;
+  }
+  .rotator.done::after{display:none;}
+  @keyframes caret{0%,100%{opacity:1;}50%{opacity:0;}}
   .hero-sub{
     font-family:'Switzer',sans-serif;font-weight:500;
     font-size:clamp(17px,2vw,22px);line-height:1.5;max-width:var(--measure-text);
@@ -463,7 +470,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <h1 class="reveal d2"><span class="rotator" id="rotator">Think</span> <em>Fearless</em></h1>
+  <h1 class="reveal d2"><span class="rotator" id="rotator"></span> <em>Fearless</em></h1>
   <p class="hero-sub reveal d3">We're an independent brand studio. We think first, then build. Brands with the clarity to stand for something and the confidence to show it.</p>
 </section>
 
@@ -601,26 +608,39 @@
     setTimeout(finish, 2500);
   })();
 
-  // hero word rotator: slide-up + fade, settles on Imagine
+  // hero word rotator: typewriter + fade, settles on Imagine
   (function(){
     const el = document.getElementById('rotator');
     if(!el) return;
     const words = ['Think','Create','Build','Imagine'];
-    let i = 0;
-    const tick = ()=>{
-      if(i >= words.length - 1) return; // stop on Imagine
-      el.classList.add('out');           // current word slides up + fades
-      setTimeout(()=>{
-        i++;
-        el.textContent = words[i];
-        el.classList.remove('out');
-        el.classList.add('in-prep');     // place new word below, hidden
-        void el.offsetWidth;             // force reflow
-        el.classList.remove('in-prep');  // animate into place
-        if(i < words.length - 1) setTimeout(tick, 1800);
-      }, 500);
-    };
-    setTimeout(tick, 1800);
+    const typeSpeed = 90, holdTime = 1100, fadeTime = 350;
+    let wi = 0;
+
+    function typeWord(word, done){
+      el.classList.remove('fade-out','done');
+      el.textContent = '';
+      let ci = 0;
+      (function typeChar(){
+        if(ci <= word.length){
+          el.textContent = word.slice(0, ci);
+          ci++;
+          setTimeout(typeChar, typeSpeed);
+        } else if(done){ done(); }
+      })();
+    }
+
+    function cycle(){
+      const isLast = wi === words.length - 1;
+      typeWord(words[wi], ()=>{
+        if(isLast){ el.classList.add('done'); return; } // stop, hide caret
+        setTimeout(()=>{
+          el.classList.add('fade-out');
+          setTimeout(()=>{ wi++; cycle(); }, fadeTime);
+        }, holdTime);
+      });
+    }
+
+    setTimeout(cycle, 500);
   })();
 
   // scroll reveal
