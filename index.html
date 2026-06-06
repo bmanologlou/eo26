@@ -164,6 +164,8 @@
     font-size:clamp(64px,16vw,260px);line-height:.9;letter-spacing:-.035em;
   }
   h1 em{font-style:normal;color:var(--blue);}
+  .rotator{display:inline-block;transition:opacity .5s ease;}
+  .rotator.fading{opacity:0;}
   .hero-sub{
     font-family:'Switzer',sans-serif;font-weight:500;
     font-size:clamp(17px,2vw,22px);line-height:1.5;max-width:var(--measure-text);
@@ -457,7 +459,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <h1 class="reveal d2">Imagine <em>Fearless</em></h1>
+  <h1 class="reveal d2"><span class="rotator" id="rotator">Think</span> <em>Fearless</em></h1>
   <p class="hero-sub reveal d3">We're an independent brand studio. We think first, then build. Brands with the clarity to stand for something and the confidence to show it.</p>
 </section>
 
@@ -593,6 +595,25 @@
     window.addEventListener('load', ()=>setTimeout(finish, 400));
     // safety fallback so it never hangs
     setTimeout(finish, 2500);
+  })();
+
+  // hero word rotator: cycles then settles on Imagine
+  (function(){
+    const el = document.getElementById('rotator');
+    if(!el) return;
+    const words = ['Think','Create','Build','Imagine'];
+    let i = 0;
+    const tick = ()=>{
+      if(i >= words.length - 1) return; // stop on Imagine
+      el.classList.add('fading');
+      setTimeout(()=>{
+        i++;
+        el.textContent = words[i];
+        el.classList.remove('fading');
+        if(i < words.length - 1) setTimeout(tick, 1600);
+      }, 500);
+    };
+    setTimeout(tick, 1600);
   })();
 
   // scroll reveal
