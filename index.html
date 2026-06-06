@@ -166,10 +166,9 @@
   h1 em{font-style:normal;color:var(--blue);}
   .rotator{
     display:inline-block;
-    height:.9em;line-height:.9;vertical-align:top;
-    transition:opacity .35s ease;
+    transition:color .35s ease;
   }
-  .rotator.fade-out{opacity:0;}
+  .rotator.fade-out{color:var(--paper);}
   .hero-sub{
     font-family:'Switzer',sans-serif;font-weight:500;
     font-size:clamp(17px,2vw,22px);line-height:1.5;max-width:var(--measure-text);
@@ -601,39 +600,29 @@
     setTimeout(finish, 2500);
   })();
 
-  // hero word rotator: typewriter + fade, settles on Imagine
+  // hero word rotator: color-fade swap (never empties, no jump), settles on Imagine
   (function(){
     const el = document.getElementById('rotator');
     if(!el) return;
     const words = ['Think','Create','Build','Imagine'];
-    const typeSpeed = 90, holdTime = 1100, fadeTime = 350;
+    const holdTime = 1500, fadeTime = 350;
     let wi = 0;
-
-    function typeWord(word, done){
-      el.classList.remove('fade-out');
-      el.textContent = '\u200b';
-      let ci = 0;
-      (function typeChar(){
-        if(ci <= word.length){
-          el.textContent = word.slice(0, ci) || '\u200b';
-          ci++;
-          setTimeout(typeChar, typeSpeed);
-        } else if(done){ done(); }
-      })();
-    }
+    el.textContent = words[0];
 
     function cycle(){
-      const isLast = wi === words.length - 1;
-      typeWord(words[wi], ()=>{
-        if(isLast){ return; }
+      if(wi >= words.length - 1) return; // stop on Imagine
+      setTimeout(()=>{
+        el.classList.add('fade-out');          // current word fades to white
         setTimeout(()=>{
-          el.classList.add('fade-out');
-          setTimeout(()=>{ wi++; cycle(); }, fadeTime);
-        }, holdTime);
-      });
+          wi++;
+          el.textContent = words[wi];          // swap while invisible
+          el.classList.remove('fade-out');     // fade back to color
+          cycle();
+        }, fadeTime);
+      }, holdTime);
     }
 
-    setTimeout(cycle, 500);
+    setTimeout(cycle, holdTime);
   })();
 
   // scroll reveal
