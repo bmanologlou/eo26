@@ -600,29 +600,42 @@
     setTimeout(finish, 2500);
   })();
 
-  // hero word rotator: color-fade swap (never empties, no jump), settles on Imagine
+  // hero word rotator: type in, fade out to white (word stays, no jump), settles on Imagine
   (function(){
     const el = document.getElementById('rotator');
     if(!el) return;
     const words = ['Think','Create','Build','Imagine'];
-    const holdTime = 1500, fadeTime = 350;
+    const typeSpeed = 95, holdTime = 1200, fadeTime = 350;
     let wi = 0;
-    el.textContent = words[0];
 
-    function cycle(){
-      if(wi >= words.length - 1) return; // stop on Imagine
-      setTimeout(()=>{
-        el.classList.add('fade-out');          // current word fades to white
-        setTimeout(()=>{
-          wi++;
-          el.textContent = words[wi];          // swap while invisible
-          el.classList.remove('fade-out');     // fade back to color
-          cycle();
-        }, fadeTime);
-      }, holdTime);
+    function typeIn(word, done){
+      let ci = 0;
+      // set first char while still white, then reveal color
+      el.textContent = word.slice(0, 1);
+      el.classList.remove('fade-out');
+      ci = 1;
+      (function step(){
+        el.textContent = word.slice(0, ci);
+        if(ci < word.length){ ci++; setTimeout(step, typeSpeed); }
+        else if(done){ done(); }
+      })();
     }
 
-    setTimeout(cycle, holdTime);
+    function cycle(){
+      typeIn(words[wi], ()=>{
+        if(wi >= words.length - 1) return;   // stop on Imagine
+        setTimeout(()=>{
+          el.classList.add('fade-out');      // fade current to white, stays in place
+          setTimeout(()=>{
+            wi++;
+            cycle();                         // type next (typeIn removes fade-out)
+          }, fadeTime);
+        }, holdTime);
+      });
+    }
+
+    el.textContent = words[0];
+    cycle();
   })();
 
   // scroll reveal
