@@ -166,10 +166,10 @@
   h1 em{font-style:normal;color:var(--blue);}
   .rotator{
     display:inline-block;
-    transition:opacity .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1);
+    transition:opacity .5s cubic-bezier(.33,0,.2,1),transform .5s cubic-bezier(.33,0,.2,1);
   }
-  .rotator.out{opacity:0;transform:translateY(-.42em);}   /* leaving upward */
-  .rotator.in-prep{opacity:0;transform:translateY(.42em);} /* arriving from below, pre-state */
+  .rotator.out{opacity:0;transform:translateY(-.6em);}    /* leaving upward */
+  .rotator.in-prep{opacity:0;transform:translateY(.6em);} /* arriving from below */
   .hero-sub{
     font-family:'Switzer',sans-serif;font-weight:500;
     font-size:clamp(17px,2vw,22px);line-height:1.5;max-width:var(--measure-text);
@@ -615,13 +615,12 @@
         el.textContent = words[i];
         el.classList.remove('out');
         el.classList.add('in-prep');     // place new word below, hidden
-        // force reflow so the transition runs
-        void el.offsetWidth;
+        void el.offsetWidth;             // force reflow
         el.classList.remove('in-prep');  // animate into place
-        if(i < words.length - 1) setTimeout(tick, 1700);
-      }, 450);
+        if(i < words.length - 1) setTimeout(tick, 1800);
+      }, 500);
     };
-    setTimeout(tick, 1700);
+    setTimeout(tick, 1800);
   })();
 
   // scroll reveal
