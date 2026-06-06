@@ -164,8 +164,12 @@
     font-size:clamp(64px,16vw,260px);line-height:.9;letter-spacing:-.035em;
   }
   h1 em{font-style:normal;color:var(--blue);}
-  .rotator{display:inline-block;transition:opacity .5s ease;}
-  .rotator.fading{opacity:0;}
+  .rotator{
+    display:inline-block;
+    transition:opacity .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1);
+  }
+  .rotator.out{opacity:0;transform:translateY(-.42em);}   /* leaving upward */
+  .rotator.in-prep{opacity:0;transform:translateY(.42em);} /* arriving from below, pre-state */
   .hero-sub{
     font-family:'Switzer',sans-serif;font-weight:500;
     font-size:clamp(17px,2vw,22px);line-height:1.5;max-width:var(--measure-text);
@@ -597,7 +601,7 @@
     setTimeout(finish, 2500);
   })();
 
-  // hero word rotator: cycles then settles on Imagine
+  // hero word rotator: slide-up + fade, settles on Imagine
   (function(){
     const el = document.getElementById('rotator');
     if(!el) return;
@@ -605,15 +609,19 @@
     let i = 0;
     const tick = ()=>{
       if(i >= words.length - 1) return; // stop on Imagine
-      el.classList.add('fading');
+      el.classList.add('out');           // current word slides up + fades
       setTimeout(()=>{
         i++;
         el.textContent = words[i];
-        el.classList.remove('fading');
-        if(i < words.length - 1) setTimeout(tick, 1600);
-      }, 500);
+        el.classList.remove('out');
+        el.classList.add('in-prep');     // place new word below, hidden
+        // force reflow so the transition runs
+        void el.offsetWidth;
+        el.classList.remove('in-prep');  // animate into place
+        if(i < words.length - 1) setTimeout(tick, 1700);
+      }, 450);
     };
-    setTimeout(tick, 1600);
+    setTimeout(tick, 1700);
   })();
 
   // scroll reveal
