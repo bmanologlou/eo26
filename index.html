@@ -165,18 +165,10 @@
   }
   h1 em{font-style:normal;color:var(--blue);}
   .rotator{
-    display:inline-block;
+    display:inline-block;min-height:1em;
     transition:opacity .35s ease;
   }
   .rotator.fade-out{opacity:0;}
-  .rotator::after{
-    content:'';display:inline-block;width:.06em;height:.9em;
-    background:var(--blue);margin-left:.04em;vertical-align:baseline;
-    transform:translateY(.08em);
-    animation:caret .8s step-end infinite;
-  }
-  .rotator.done::after{display:none;}
-  @keyframes caret{0%,100%{opacity:1;}50%{opacity:0;}}
   .hero-sub{
     font-family:'Switzer',sans-serif;font-weight:500;
     font-size:clamp(17px,2vw,22px);line-height:1.5;max-width:var(--measure-text);
@@ -617,12 +609,12 @@
     let wi = 0;
 
     function typeWord(word, done){
-      el.classList.remove('fade-out','done');
-      el.textContent = '';
+      el.classList.remove('fade-out');
+      el.textContent = '\u200b';
       let ci = 0;
       (function typeChar(){
         if(ci <= word.length){
-          el.textContent = word.slice(0, ci);
+          el.textContent = word.slice(0, ci) || '\u200b';
           ci++;
           setTimeout(typeChar, typeSpeed);
         } else if(done){ done(); }
@@ -632,7 +624,7 @@
     function cycle(){
       const isLast = wi === words.length - 1;
       typeWord(words[wi], ()=>{
-        if(isLast){ el.classList.add('done'); return; } // stop, hide caret
+        if(isLast){ return; }
         setTimeout(()=>{
           el.classList.add('fade-out');
           setTimeout(()=>{ wi++; cycle(); }, fadeTime);
