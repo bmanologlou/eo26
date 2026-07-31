@@ -1,13 +1,18 @@
 ---
 // Base layout — head, meta, favicon, and the full site stylesheet.
+import { ViewTransitions } from 'astro:transitions';
+const {
+  title = "Eternal Optimists — Independent Brand Studio",
+  description = "An independent brand studio building fearless brands with clarity and conviction.",
+} = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eternal Optimists — Independent Brand Studio</title>
-<meta name="description" content="An independent brand studio building fearless brands with clarity and conviction.">
+<title>{title}</title>
+<meta name="description" content={description}>
 <link rel="canonical" href="https://eo26.eoflux.com/">
 <meta name="robots" content="index, follow">
 
@@ -54,6 +59,7 @@
 </script>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<ViewTransitions />
 <style is:global>
   /* local variable fonts */
   @font-face{
@@ -484,6 +490,119 @@
     footer{padding-bottom:20px;}
     .foot-social{flex-wrap:nowrap;justify-content:space-between;gap:8px;width:100%;}
     .foot-social .foot-policies{margin-left:0;}
+  }
+
+  /* ===== APPROACH PAGE ===== */
+  .ap-hero{
+    padding:clamp(140px,24vh,280px) var(--gutter) clamp(60px,10vh,110px);
+    max-width:var(--maxw);margin:0 auto;
+  }
+  .ap-hero h1{
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(44px,8vw,120px);line-height:.98;letter-spacing:-.03em;
+    max-width:var(--measure-wide);
+  }
+  .ap-hero h1 em{font-style:normal;color:var(--blue);}
+  .ap-hero p{
+    font-family:'Erode',serif;font-weight:400;
+    font-size:clamp(18px,2.4vw,26px);line-height:1.5;color:var(--ink);
+    max-width:var(--measure-text);margin:clamp(28px,4vh,44px) 0 0;
+  }
+
+  /* Method — the journey (lavender) */
+  .method{
+    background:#E6E6FE;
+    padding:clamp(64px,10vh,120px) 0;
+  }
+  .method-inner{
+    max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);
+  }
+  .method .label{color:var(--blue);opacity:.7;}
+  .method-track{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);
+    position:relative;margin-top:16px;
+  }
+  .method-line{
+    position:absolute;top:18px;left:0;height:2px;width:100%;
+    background:rgba(20,20,190,.18);overflow:hidden;
+  }
+  .method-line::after{
+    content:'';position:absolute;inset:0;width:var(--fill,0%);
+    background:var(--blue);transition:width 1.4s cubic-bezier(.2,.7,.2,1);
+  }
+  .method.in .method-line::after{width:100%;}
+  .stage-num{
+    font-family:'Switzer',sans-serif;font-weight:600;font-size:15px;
+    color:var(--blue);letter-spacing:.02em;
+    display:inline-flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border-radius:50%;background:#E6E6FE;
+    border:2px solid var(--blue);position:relative;z-index:1;
+  }
+  .stage-name{
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(26px,3.6vw,44px);line-height:1;letter-spacing:-.02em;
+    color:var(--blue);margin:22px 0 12px;
+  }
+  .stage-desc{
+    font-family:'Erode',serif;font-weight:400;
+    font-size:clamp(15px,1.5vw,18px);line-height:1.55;color:#28282e;
+    max-width:34ch;
+  }
+
+  /* Pillars — what a brand needs (white grid) */
+  .pillars{
+    padding:clamp(72px,12vh,140px) 0;
+    max-width:var(--maxw);margin:0 auto;
+  }
+  .pillars-head{padding:0 var(--gutter);}
+  .pillars-head h2{
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(30px,5vw,64px);line-height:1.02;letter-spacing:-.025em;
+    max-width:var(--measure-wide);margin:0;
+  }
+  .pillars-head p{
+    font-family:'Erode',serif;font-weight:400;
+    font-size:clamp(16px,1.8vw,20px);line-height:1.5;color:var(--muted);
+    max-width:var(--measure-text);margin:20px 0 0;
+  }
+  .pillars-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    margin-top:clamp(40px,6vh,72px);
+    border-top:1px solid var(--line);
+  }
+  .pillar{
+    padding:clamp(28px,3.5vw,44px) clamp(20px,2.5vw,36px)
+            clamp(28px,3.5vw,44px) 0;
+    border-bottom:1px solid var(--line);
+    border-right:1px solid var(--line);
+    transition:background .3s ease;
+  }
+  .pillars-grid .pillar:nth-child(3n){border-right:none;}
+  .pillar{padding-left:clamp(20px,2.5vw,36px);}
+  .pillar:hover{background:var(--paper-2);}
+  .pillar-num{
+    font-family:'Switzer',sans-serif;font-weight:600;font-size:13px;
+    color:var(--muted);letter-spacing:.04em;
+  }
+  .pillar-name{
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(22px,2.6vw,32px);line-height:1;letter-spacing:-.02em;
+    color:var(--ink);margin:14px 0 12px;
+  }
+  .pillar-desc{
+    font-family:'Erode',serif;font-weight:400;
+    font-size:clamp(14px,1.4vw,16px);line-height:1.55;color:var(--muted);
+  }
+  @media(max-width:900px){
+    .method-track{grid-template-columns:1fr;gap:40px;}
+    .method-line{display:none;}
+    .pillars-grid{grid-template-columns:repeat(2,1fr);}
+    .pillars-grid .pillar:nth-child(3n){border-right:1px solid var(--line);}
+    .pillars-grid .pillar:nth-child(2n){border-right:none;}
+  }
+  @media(max-width:560px){
+    .pillars-grid{grid-template-columns:1fr;}
+    .pillars-grid .pillar{border-right:none!important;}
   }
 </style>
 </head>

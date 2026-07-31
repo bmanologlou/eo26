@@ -1,3 +1,5 @@
+// EO site scripts — runs on first load and after every View Transition
+function initEO(){
 // preloader: reveal once fonts + page are ready
   (function(){
     function reveal(){ document.body.classList.add('loaded'); }
@@ -137,3 +139,7 @@
       if(!reel.muted && inView){ manuallyPaused = false; reel.play().catch(()=>{}); }
     });
   }
+
+}
+if (document.readyState !== 'loading') { initEO(); }
+document.addEventListener('astro:page-load', initEO);
