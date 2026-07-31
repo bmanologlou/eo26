@@ -78,21 +78,26 @@ function initEO(){
     cycle();
   })();
 
-  // scroll reveal
+  // scroll reveal — individual elements + staggered groups
   const io = new IntersectionObserver((entries)=>{
-    entries.forEach((e,i)=>{
-      if(e.isIntersecting){
-        const el = e.target;
-        // small natural stagger for groups
-        setTimeout(()=>el.classList.add('in'), (el.dataset.delay?+el.dataset.delay:0));
-        io.unobserve(el);
+    entries.forEach((e)=>{
+      if(!e.isIntersecting) return;
+      const el = e.target;
+      if(el.hasAttribute('data-stagger')){
+        // reveal direct children in sequence
+        const items = el.querySelectorAll('.reveal-item');
+        items.forEach((item,i)=>{
+          setTimeout(()=>item.classList.add('in'), 90 + i*110);
+        });
+      } else {
+        setTimeout(()=>el.classList.add('in'), (el.dataset.delay? +el.dataset.delay : 0));
       }
+      io.unobserve(el);
     });
-  },{threshold:.15});
-  document.querySelectorAll('.scroll-reveal').forEach((el,i)=>{
-    el.dataset.delay = (i % 5) * 70;
-    io.observe(el);
-  });
+  },{threshold:.15, rootMargin:'0px 0px -8% 0px'});
+
+  document.querySelectorAll('.scroll-reveal').forEach((el)=>{ io.observe(el); });
+  document.querySelectorAll('[data-stagger]').forEach((el)=>{ io.observe(el); });
 
   // shrink logo to EO after scroll
   let scrolled=false;
