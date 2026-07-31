@@ -314,9 +314,11 @@ const {
     display:flex;align-items:center;justify-content:center;cursor:pointer;
     backdrop-filter:blur(6px);transition:all .3s ease;
   }
-  .sound-toggle:hover{background:#fff;border-color:#fff;}
   .sound-toggle svg{width:20px;height:20px;fill:#fff;transition:fill .3s;}
-  .sound-toggle:hover svg{fill:var(--ink);}
+  @media(hover:hover){
+    .sound-toggle:hover{background:#fff;border-color:#fff;}
+    .sound-toggle:hover svg{fill:var(--ink);}
+  }
   @media(max-width:720px){
     .showcase{height:100vh;}
     .pov-panel{display:none !important;}
