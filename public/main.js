@@ -138,9 +138,14 @@ function initEO(){
 
   // showcase video: play when in view, pause when out, click to pause/resume
   const reel = document.getElementById('showreel');
-  if(reel){
+  if(reel && !reel.__bound){
+    reel.__bound = true;
     let manuallyPaused = false;
     let inView = false;
+
+    // ensure muted so autoplay is allowed, then try to play
+    reel.muted = true;
+    reel.play().catch(()=>{});
 
     const vio = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
@@ -151,10 +156,9 @@ function initEO(){
           reel.pause();
         }
       });
-    },{threshold:.4});
+    },{threshold:.25});
     vio.observe(reel);
 
-    // click on video toggles pause/resume
     reel.addEventListener('click', ()=>{
       if(reel.paused){
         manuallyPaused = false;
@@ -165,17 +169,18 @@ function initEO(){
       }
     });
 
-    // sound toggle
     const toggle = document.getElementById('soundToggle');
     const iconMuted = document.getElementById('iconMuted');
     const iconSound = document.getElementById('iconSound');
-    toggle.addEventListener('click', (ev)=>{
-      ev.stopPropagation();
-      reel.muted = !reel.muted;
-      iconMuted.style.display = reel.muted ? 'block' : 'none';
-      iconSound.style.display = reel.muted ? 'none' : 'block';
-      if(!reel.muted && inView){ manuallyPaused = false; reel.play().catch(()=>{}); }
-    });
+    if(toggle){
+      toggle.addEventListener('click', (ev)=>{
+        ev.stopPropagation();
+        reel.muted = !reel.muted;
+        if(iconMuted) iconMuted.style.display = reel.muted ? 'block' : 'none';
+        if(iconSound) iconSound.style.display = reel.muted ? 'none' : 'block';
+        if(!reel.muted){ manuallyPaused = false; reel.play().catch(()=>{}); }
+      });
+    }
   }
 
 }
