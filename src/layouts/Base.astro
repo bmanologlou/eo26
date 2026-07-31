@@ -172,8 +172,9 @@ const {
     background:#e7e8ea;
     transform:scale(0);transform-origin:center;
     transition:transform .7s cubic-bezier(.76,0,.24,1);
-    z-index:-1;
+    z-index:0;
   }
+  .mobile-menu a{position:relative;z-index:1;}
   body.menu-open .mobile-menu{visibility:visible;}
   body.menu-open .mobile-menu::before{transform:scale(280);}
   .mobile-menu a{

@@ -109,15 +109,20 @@ function initEO(){
     }
   }, {passive:true});
 
-  // burger / mobile menu
-  const burger = document.getElementById('burger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  if(burger){
-    burger.addEventListener('click', ()=>{
-      document.body.classList.toggle('menu-open');
-    });
-    mobileMenu.querySelectorAll('a').forEach(a=>{
-      a.addEventListener('click', ()=>document.body.classList.remove('menu-open'));
+  // burger / mobile menu — resilient via delegation
+  if(!window.__burgerBound){
+    window.__burgerBound = true;
+    document.addEventListener('click', (ev)=>{
+      const b = ev.target.closest('#burger');
+      if(b){
+        document.body.classList.toggle('menu-open');
+        return;
+      }
+      // close when tapping a link inside the mobile menu
+      const link = ev.target.closest('#mobileMenu a');
+      if(link){
+        document.body.classList.remove('menu-open');
+      }
     });
   }
 
