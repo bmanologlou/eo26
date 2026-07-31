@@ -1,4 +1,32 @@
 // EO site scripts — runs on first load and after every View Transition
+
+// ---- Lenis smooth scroll (init once, persists across View Transitions) ----
+(function(){
+  if (window.__lenisStarted) return;
+  window.__lenisStarted = true;
+
+  // respect reduced-motion preference
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const s = document.createElement('script');
+  s.src = 'https://unpkg.com/lenis@1.1.14/dist/lenis.min.js';
+  s.onload = function(){
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t)=>Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.6,
+    });
+    window.__lenis = lenis;
+    function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    // reset scroll cleanly on View Transition navigation
+    document.addEventListener('astro:after-swap', ()=>{ lenis.scrollTo(0, { immediate: true }); });
+  };
+  document.head.appendChild(s);
+})();
+
 function initEO(){
 // preloader: reveal once fonts + page are ready
   (function(){
