@@ -1,154 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Showcase from '../components/Showcase.astro';
+import Belief from '../components/Belief.astro';
+import WhatWeDo from '../components/WhatWeDo.astro';
+import Work from '../components/Work.astro';
+import Footer from '../components/Footer.astro';
 ---
+
 <Base>
-
-<header>
-  <a href="#" class="logo"><svg class="mark" viewBox="0 0 312 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" fill-rule="nonzero" d="M90,45 C90,40.3341014 89.3001152,35.8496544 87.9781106,31.624424 C82.2753456,13.2978111 65.1929724,0 45,0 C41.1117512,0 37.3531106,0.492511521 33.75,1.42569124 C15.0086406,6.27304147 0,23.6592742 0,45 C0,69.858871 20.141129,90 45,90 C69.858871,90 90,69.858871 90,45 Z M76.6762673,45 C59.1791475,45 45.0259217,59.1791475 45,76.6762673 C45,59.2050691 30.8208525,45.0259217 13.3237327,45.0259217 C30.7949309,45.0259217 44.9740783,30.8467742 44.9740783,13.3496544 C45,30.8208525 59.1791475,45 76.6762673,45 Z M155.529954,0 C130.671083,0 110.529954,20.141129 110.529954,45 C110.529954,69.858871 130.671083,90 155.529954,90 L155.529954,45 L200.529954,45 C200.529954,20.141129 180.388825,0 155.529954,0 Z M221.059908,0 L221.059908,90 L311.059908,90 L311.059908,0 L221.059908,0 Z M266.059908,60.7085253 C257.402074,60.7085253 250.351382,53.6837558 250.351382,45 C250.351382,36.3421659 257.376152,29.2914747 266.059908,29.2914747 C274.743664,29.2914747 281.768433,36.3162442 281.768433,45 C281.768433,53.6837558 274.717742,60.7085253 266.059908,60.7085253 Z"/></svg><span class="logo-full">Eternal Optimists</span><span class="logo-short">EO</span></a>
-  <nav>
-    <a href="#" class="nav-link">Work</a>
-    <a href="#" class="nav-link">Approach</a>
-    <a href="#" class="nav-link">About</a>
-    <a href="https://cal.com/eternaloptimists/" class="btn-outline nav-cta">Book a session</a>
-  </nav>
-</header>
-
-<button class="burger" id="burger" aria-label="Menu"><span class="dot-btn"></span></button>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#">Work</a>
-  <a href="#">Approach</a>
-  <a href="#">About</a>
-  <a href="https://cal.com/eternaloptimists/" class="m-cta">Contact</a>
-</div>
-
-<!-- HERO -->
-<section class="hero">
-  <h1 class="reveal d2"><span class="rotator" id="rotator">Think</span> <em>Fearless</em></h1>
-  <p class="hero-sub reveal d3">We are Eternal Optimists, an independent brand studio. We think first, then build brands with the clarity to stand for something, and the confidence to show it.</p>
-</section>
-
-<!-- SHOWCASE VIDEO -->
-<section class="showcase scroll-reveal" id="showcase">
-  <video id="showreel" playsinline muted loop preload="metadata">
-    <source src="/assets/video/showreel.mp4" type="video/mp4">
-  </video>
-  <div class="sound-toggle" id="soundToggle" title="Toggle sound">
-    <svg id="iconMuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 00-2.5-4v8a4.5 4.5 0 002.5-4z" opacity=".5"/><line x1="19" y1="5" x2="5" y2="19" stroke="#fff" stroke-width="2"/></svg>
-    <svg id="iconSound" viewBox="0 0 24 24" style="display:none"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 00-2.5-4v8a4.5 4.5 0 002.5-4zM14 3.2v2.1a7 7 0 010 13.4v2.1a9 9 0 000-17.6z"/></svg>
-  </div>
-</section>
-
-<!-- POV / BELIEF -->
-<section class="pov">
-  <div class="pov-inner">
-    <span class="label scroll-reveal">/Our Belief</span>
-    <div class="pov-stage">
-      <p class="pov-text scroll-reveal">We believe a fearless brand is built on three things. <span class="kw" data-panel="p-purpose">Purpose</span> worth standing for. <span class="kw" data-panel="p-story">Story</span> that carries it. <span class="kw" data-panel="p-direction">Direction</span> that makes it real.</p>
-      <div class="pov-panel" id="p-purpose">
-        <span class="pov-panel-word">Purpose</span>
-        <p class="pov-panel-desc">Why the brand exists and what it stands for. It gives every decision a reason, and makes people care.</p>
-      </div>
-      <div class="pov-panel" id="p-story">
-        <span class="pov-panel-word">Story</span>
-        <p class="pov-panel-desc">What makes the brand make sense. It connects the parts into something people remember and want to belong to.</p>
-      </div>
-      <div class="pov-panel" id="p-direction">
-        <span class="pov-panel-word">Direction</span>
-        <p class="pov-panel-desc">Where the brand is going and how it gets there. It turns belief into clear, confident action.</p>
-      </div>
-    </div>
-    <p class="pov-tail scroll-reveal">Get those right, and everything else follows. Most brands have at least one of the three. The fearless ones have all three working together, pulling in the same direction. That alignment is what we build, where strategy, creativity and innovation come together as one idea.</p>
-    <a href="#" class="text-link pov-btn scroll-reveal">Our Approach
-      <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
-    </a>
-  </div>
-</section>
-
-<!-- WHAT WE DO -->
-<section class="strip">
-  <span class="label scroll-reveal">/What We Do</span>
-  <div class="strip-list">
-    <div class="strip-row scroll-reveal"><span class="num">01</span><span class="name">Strategy</span></div>
-    <div class="strip-row scroll-reveal"><span class="num">02</span><span class="name">Identity</span></div>
-    <div class="strip-row scroll-reveal"><span class="num">03</span><span class="name">Design</span></div>
-    <div class="strip-row scroll-reveal"><span class="num">04</span><span class="name">Experience</span></div>
-  </div>
-</section>
-
-<!-- FEATURED WORK -->
-<section class="featured">
-  <div class="featured-head">
-    <span class="label scroll-reveal" style="margin-bottom:0">/Selected Work</span>
-    <a href="#" class="text-link scroll-reveal">See All Work
-      <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
-    </a>
-  </div>
-  <div class="work-feature">
-    <a href="#" class="feature-card scroll-reveal">
-      <div class="work-thumb"><img src="/assets/work/sleepnlife.webp" alt="SleepnLife"></div>
-      <div class="work-meta feature-mobile-meta">
-        <div class="work-name">SleepnLife</div>
-        <div class="work-line">A brand that makes rest feel like a good day waiting to happen.</div>
-      </div>
-    </a>
-    <div class="feature-text scroll-reveal">
-      <div class="feature-services">Strategy · Identity · Design</div>
-      <h3 class="feature-name">SleepnLife</h3>
-      <p class="feature-desc">A sleep brand reframed around the morning, not the night. We built a strategy and identity that makes rest feel like a good day waiting to happen, from positioning and tagline to a complete visual language.</p>
-      <span class="text-link feature-link">View Project
-        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
-      </span>
-    </div>
-  </div>
-  <div class="work-grid">
-    <a href="#" class="work-card scroll-reveal">
-      <div class="work-thumb"><img src="/assets/work/edupaths.webp" alt="EduPaths"></div>
-      <div class="work-meta">
-        <div class="work-name">EduPaths</div>
-        <div class="work-line">Turning learning into a journey worth following.</div>
-      </div>
-    </a>
-    <a href="#" class="work-card scroll-reveal">
-      <div class="work-thumb"><img src="/assets/work/groowise.webp" alt="Groowise"></div>
-      <div class="work-meta">
-        <div class="work-name">Groowise</div>
-        <div class="work-line">Growth, made clear enough to act on.</div>
-      </div>
-    </a>
-    <a href="#" class="work-card scroll-reveal">
-      <div class="work-thumb"><img src="/assets/work/sleepnlife.webp" alt="Project four"></div>
-      <div class="work-meta">
-        <div class="work-name">Project Four</div>
-        <div class="work-line">A short line that captures the idea behind the work.</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER (with closing CTA) -->
-<footer>
-  <div class="foot-close">
-    <h2 class="scroll-reveal">Have something <em>worth building?</em><br>Let's start with a conversation.</h2>
-    <a href="https://cal.com/eternaloptimists/" class="btn-fill foot-cta scroll-reveal">
-      Book a session
-      <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
-    </a>
-  </div>
-  <div class="foot-bottom">
-    <div class="foot-bottom-inner">
-      <div class="foot-social">
-        <a href="https://www.instagram.com/eternaloptimistsagency/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.linkedin.com/company/eternaloptimists/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.behance.net/EternalOptimists" target="_blank" rel="noopener">Behance</a>
-        <a href="mailto:hello@eternaloptimists.com">Email</a>
-        <a href="#" class="foot-policies">Policies</a>
-      </div>
-      <span class="foot-meta">© 2012—2026 Eternal Optimists. All rights reserved.</span>
-    </div>
-  </div>
-</footer>
-
-<script is:inline defer src="/main.js"></script>
-
+  <Header />
+  <Hero />
+  <Showcase />
+  <Belief />
+  <WhatWeDo />
+  <Work />
+  <Footer />
+  <script is:inline defer src="/main.js"></script>
 </Base>
