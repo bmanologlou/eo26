@@ -168,19 +168,24 @@ function initEO(){
         reel.pause();
       }
     });
+  }
 
-    const toggle = document.getElementById('soundToggle');
-    const iconMuted = document.getElementById('iconMuted');
-    const iconSound = document.getElementById('iconSound');
-    if(toggle){
-      toggle.addEventListener('click', (ev)=>{
-        ev.stopPropagation();
-        reel.muted = !reel.muted;
-        if(iconMuted) iconMuted.style.display = reel.muted ? 'block' : 'none';
-        if(iconSound) iconSound.style.display = reel.muted ? 'none' : 'block';
-        if(!reel.muted){ manuallyPaused = false; reel.play().catch(()=>{}); }
-      });
-    }
+  // sound toggle — resilient delegation (bound once on document)
+  if(!window.__soundBound){
+    window.__soundBound = true;
+    document.addEventListener('click', (ev)=>{
+      const t = ev.target.closest('#soundToggle');
+      if(!t) return;
+      ev.stopPropagation();
+      const r = document.getElementById('showreel');
+      if(!r) return;
+      r.muted = !r.muted;
+      const iconMuted = document.getElementById('iconMuted');
+      const iconSound = document.getElementById('iconSound');
+      if(iconMuted) iconMuted.style.display = r.muted ? 'block' : 'none';
+      if(iconSound) iconSound.style.display = r.muted ? 'none' : 'block';
+      if(!r.muted){ r.play().catch(()=>{}); }
+    });
   }
 
 }
