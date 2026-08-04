@@ -745,6 +745,58 @@ const {
     .traits-grid{grid-template-columns:1fr;}
     .traits-grid .trait{border-right:none!important;}
   }
+
+  /* Studio bento strip */
+  .studio{
+    padding:clamp(48px,8vh,90px) 0 clamp(64px,10vh,120px);
+    overflow:hidden;
+  }
+  .studio-head{
+    max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter) 28px;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:20px;
+  }
+  .studio-head .label{margin-bottom:0;}
+  .studio-nav{display:flex;gap:10px;}
+  .studio-arrow{
+    width:44px;height:44px;border-radius:50%;
+    border:1px solid var(--line);background:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .25s ease,border-color .25s ease;
+  }
+  .studio-arrow svg{width:20px;height:20px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .studio-arrow:hover{background:var(--ink);border-color:var(--ink);}
+  .studio-arrow:hover svg{stroke:#fff;}
+  .studio-track{
+    display:flex;gap:16px;
+    padding:0 var(--gutter);
+    overflow-x:auto;scroll-behavior:smooth;
+    scroll-snap-type:x mandatory;
+    -ms-overflow-style:none;scrollbar-width:none;
+  }
+  .studio-track::-webkit-scrollbar{display:none;}
+  .studio-item{
+    flex:0 0 auto;height:clamp(300px,44vh,440px);
+    scroll-snap-align:start;
+  }
+  .studio-item.w-sm{width:clamp(220px,26vw,320px);}
+  .studio-item.w-md{width:clamp(300px,36vw,460px);}
+  .studio-item.w-lg{width:clamp(380px,48vw,620px);}
+  .studio-ph{
+    width:100%;height:100%;border-radius:10px;overflow:hidden;
+    background:
+      repeating-linear-gradient(45deg,#ececef 0 2px,transparent 2px 22px),
+      var(--paper-2);
+    border:1px dashed var(--line);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .studio-ph span{
+    font-family:'Switzer',sans-serif;font-weight:600;font-size:13px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  }
+  .studio-item img{width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;}
+  @media(max-width:720px){
+    .studio-nav{display:none;}
+  }
 </style>
 </head>
 <body>

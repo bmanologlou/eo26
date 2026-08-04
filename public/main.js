@@ -188,6 +188,16 @@ function initEO(){
     });
   }
 
+  // studio bento strip — arrow scrolling
+  const studioTrack = document.getElementById('studioTrack');
+  if(studioTrack){
+    const prev = document.getElementById('studioPrev');
+    const next = document.getElementById('studioNext');
+    const step = ()=>Math.max(320, studioTrack.clientWidth * 0.7);
+    if(prev) prev.addEventListener('click', ()=>studioTrack.scrollBy({left:-step(), behavior:'smooth'}));
+    if(next) next.addEventListener('click', ()=>studioTrack.scrollBy({left:step(), behavior:'smooth'}));
+  }
+
 }
 if (document.readyState !== 'loading') { initEO(); }
 document.addEventListener('astro:page-load', initEO);
