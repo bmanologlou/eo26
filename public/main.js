@@ -94,7 +94,7 @@ function initEO(){
       }
       io.unobserve(el);
     });
-  },{threshold:.15, rootMargin:'0px 0px -8% 0px'});
+  },{threshold:.12, rootMargin:'0px 0px -18% 0px'});
 
   document.querySelectorAll('.scroll-reveal').forEach((el)=>{ io.observe(el); });
   document.querySelectorAll('[data-stagger]').forEach((el)=>{ io.observe(el); });
