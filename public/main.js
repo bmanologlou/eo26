@@ -87,7 +87,7 @@ function initEO(){
         // reveal direct children in sequence
         const items = el.querySelectorAll('.reveal-item');
         items.forEach((item,i)=>{
-          setTimeout(()=>item.classList.add('in'), 90 + i*110);
+          setTimeout(()=>item.classList.add('in'), 90 + i*150);
         });
       } else {
         setTimeout(()=>el.classList.add('in'), (el.dataset.delay? +el.dataset.delay : 0));
