@@ -1,5 +1,5 @@
 ---
-const { src, alt = "", caption } = Astro.props;
+const { src, alt = "" } = Astro.props;
 ---
 <section class="concept scroll-reveal">
   <div class="concept-inner">
@@ -8,6 +8,5 @@ const { src, alt = "", caption } = Astro.props;
         ? <img src={src} alt={alt} loading="lazy" />
         : <div class="concept-ph"><span>Image</span></div>}
     </figure>
-    {caption && <figcaption class="concept-cap">{caption}</figcaption>}
   </div>
 </section>
