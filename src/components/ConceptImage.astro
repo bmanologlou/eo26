@@ -1,0 +1,13 @@
+---
+const { src, alt = "", caption } = Astro.props;
+---
+<section class="concept scroll-reveal">
+  <div class="concept-inner">
+    <figure class="concept-fig">
+      {src
+        ? <img src={src} alt={alt} loading="lazy" />
+        : <div class="concept-ph"><span>Image</span></div>}
+    </figure>
+    {caption && <figcaption class="concept-cap">{caption}</figcaption>}
+  </div>
+</section>
