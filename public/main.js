@@ -198,6 +198,23 @@ function initEO(){
     if(next) next.addEventListener('click', ()=>studioTrack.scrollBy({left:step(), behavior:'smooth'}));
   }
 
+  // work grid filters
+  const wgGrid = document.getElementById('workgridGrid');
+  if(wgGrid){
+    const filterBtns = document.querySelectorAll('.wg-filter');
+    filterBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const f = btn.dataset.filter;
+        filterBtns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        wgGrid.querySelectorAll('.wg-card').forEach(card=>{
+          const show = (f === 'All' || card.dataset.cat === f);
+          card.classList.toggle('is-hidden', !show);
+        });
+      });
+    });
+  }
+
 }
 if (document.readyState !== 'loading') { initEO(); }
 document.addEventListener('astro:page-load', initEO);
