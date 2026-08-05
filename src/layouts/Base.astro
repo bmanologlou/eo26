@@ -588,7 +588,10 @@ const {
   }
   .pillars-grid .pillar:nth-child(3n){border-right:none;}
   .pillar{padding-left:clamp(20px,2.5vw,36px);}
-  .pillar:hover{background:var(--paper-2);}
+  .pillar:hover{background:var(--blue);}
+  .pillar:hover .pillar-num,
+  .pillar:hover .pillar-name,
+  .pillar:hover .pillar-desc{color:#fff;}
   .pillar-num{
     font-family:'Switzer',sans-serif;font-weight:600;font-size:13px;
     color:var(--muted);letter-spacing:.04em;
@@ -762,11 +765,12 @@ const {
   .studio-arrow:hover svg{stroke:#fff;}
   .studio-track{
     display:flex;gap:16px;
-    padding:0 var(--gutter);
+    padding:0 0 0 var(--gutter);
     overflow-x:auto;scroll-behavior:smooth;
     scroll-snap-type:x mandatory;
     -ms-overflow-style:none;scrollbar-width:none;
   }
+  .studio-item:last-child{margin-right:var(--gutter);}
   .studio-track::-webkit-scrollbar{display:none;}
   .studio-item{
     flex:0 0 auto;height:clamp(300px,44vh,440px);
@@ -864,16 +868,25 @@ const {
   .wg-filter:hover{color:var(--ink);border-color:var(--ink);}
   .wg-filter.active{background:var(--ink);color:#fff;border-color:var(--ink);}
   .workgrid-grid{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:clamp(32px,5vw,72px) clamp(24px,4vw,56px);
+    columns:2;
+    column-gap:clamp(24px,4vw,56px);
   }
-  /* rhythm: push the second column down */
-  .workgrid-grid .wg-card:nth-child(even){transform:translateY(clamp(40px,8vh,90px));}
-  .wg-card{text-decoration:none;display:block;}
+  .wg-card{
+    text-decoration:none;display:inline-block;width:100%;
+    break-inside:avoid;
+    margin-bottom:clamp(32px,5vw,72px);
+  }
+  /* uneven rhythm: nudge every other card down a touch */
+  .wg-card:nth-child(4n+2){margin-top:clamp(30px,6vh,70px);}
+  .wg-card:nth-child(4n+3){margin-top:clamp(14px,3vh,36px);}
   .wg-thumb{
     width:100%;aspect-ratio:4/5;border-radius:10px;overflow:hidden;
     background:var(--paper-2);
   }
+  /* varied heights for editorial rhythm */
+  .wg-card:nth-child(3n+1) .wg-thumb{aspect-ratio:4/5;}
+  .wg-card:nth-child(3n+2) .wg-thumb{aspect-ratio:3/4;}
+  .wg-card:nth-child(3n+3) .wg-thumb{aspect-ratio:1/1;}
   .wg-thumb img{
     width:100%;height:100%;object-fit:cover;display:block;
     transition:transform .7s cubic-bezier(.2,.7,.2,1);
@@ -893,8 +906,9 @@ const {
   }
   .wg-card.is-hidden{display:none;}
   @media(max-width:720px){
-    .workgrid-grid{grid-template-columns:1fr;gap:clamp(40px,6vh,56px);}
-    .workgrid-grid .wg-card:nth-child(even){transform:none;}
+    .workgrid-grid{columns:1;}
+    .wg-card:nth-child(4n+2),
+    .wg-card:nth-child(4n+3){margin-top:0;}
   }
 
   /* ===== POLICIES PAGE ===== */
