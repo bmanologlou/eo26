@@ -1,38 +1,29 @@
+---
+const traits = [
+  { name: "Curious", desc: "We never stop asking questions. Curiosity is how we find what others miss." },
+  { name: "Strategic", desc: "Every creative decision starts with clear thinking and a reason behind it." },
+  { name: "Optimistic", desc: "We believe in what a brand can become, and build toward that possibility." },
+  { name: "Relentless", desc: "We push until the work is right, not just until it is done." },
+  { name: "Lorem", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." },
+  { name: "Ipsum", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." },
+];
+---
 <section class="traits">
   <div class="traits-head">
     <span class="label">/What Defines Us</span>
     <h2>The things that show up in everything we do.</h2>
   </div>
-  <div class="traits-grid" data-stagger>
-    <div class="trait reveal-item">
-      <span class="trait-num">01</span>
-      <h3 class="trait-name">Curious</h3>
-      <p class="trait-desc">We never stop asking questions. Curiosity is how we find what others miss.</p>
-    </div>
-    <div class="trait reveal-item">
-      <span class="trait-num">02</span>
-      <h3 class="trait-name">Strategic</h3>
-      <p class="trait-desc">Every creative decision starts with clear thinking and a reason behind it.</p>
-    </div>
-    <div class="trait reveal-item">
-      <span class="trait-num">03</span>
-      <h3 class="trait-name">Optimistic</h3>
-      <p class="trait-desc">We believe in what a brand can become, and build toward that possibility.</p>
-    </div>
-    <div class="trait reveal-item">
-      <span class="trait-num">04</span>
-      <h3 class="trait-name">Relentless</h3>
-      <p class="trait-desc">We push until the work is right, not just until it is done.</p>
-    </div>
-    <div class="trait reveal-item">
-      <span class="trait-num">05</span>
-      <h3 class="trait-name">Lorem</h3>
-      <p class="trait-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-    </div>
-    <div class="trait reveal-item">
-      <span class="trait-num">06</span>
-      <h3 class="trait-name">Ipsum</h3>
-      <p class="trait-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-    </div>
+  <div class="traits-list" data-stagger>
+    {traits.map((t) => (
+      <div class="trait reveal-item">
+        <span class="trait-icon" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="var(--blue)"/></svg>
+        </span>
+        <div class="trait-body">
+          <h3 class="trait-name">{t.name}</h3>
+          <p class="trait-desc">{t.desc}</p>
+        </div>
+      </div>
+    ))}
   </div>
 </section>
