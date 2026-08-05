@@ -16,8 +16,9 @@ const projects = [
   { name: "Project Fourteen", desc: "Complete rebrand for a legacy manufacturer.", cat: "Identity", img: "/assets/work/edupaths.webp", slug: "#", ratio: "1 / 1" },
 ];
 const filters = ["All", "Strategy", "Identity", "Design", "Experience"];
-const left = projects.filter((_, i) => i % 2 === 0);
-const right = projects.filter((_, i) => i % 2 === 1);
+const withIdx = projects.map((p, i) => ({ ...p, idx: i }));
+const left = withIdx.filter((_, i) => i % 2 === 0);
+const right = withIdx.filter((_, i) => i % 2 === 1);
 ---
 <section class="workgrid">
   <div class="workgrid-head">
@@ -31,7 +32,7 @@ const right = projects.filter((_, i) => i % 2 === 1);
   <div class="workgrid-cols" id="workgridGrid">
     <div class="wg-col">
       {left.map((p) => (
-        <a href={p.slug} class="wg-card" data-cat={p.cat}>
+        <a href={p.slug} class="wg-card" data-cat={p.cat} data-idx={p.idx}>
           <div class="wg-thumb" style={`aspect-ratio:${p.ratio}`}><img src={p.img} alt={p.name} loading="lazy" /></div>
           <div class="wg-meta">
             <h3 class="wg-name">{p.name}</h3>
@@ -42,7 +43,7 @@ const right = projects.filter((_, i) => i % 2 === 1);
     </div>
     <div class="wg-col wg-col-offset">
       {right.map((p) => (
-        <a href={p.slug} class="wg-card" data-cat={p.cat}>
+        <a href={p.slug} class="wg-card" data-cat={p.cat} data-idx={p.idx}>
           <div class="wg-thumb" style={`aspect-ratio:${p.ratio}`}><img src={p.img} alt={p.name} loading="lazy" /></div>
           <div class="wg-meta">
             <h3 class="wg-name">{p.name}</h3>

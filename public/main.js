@@ -198,19 +198,31 @@ function initEO(){
     if(next) next.addEventListener('click', ()=>studioTrack.scrollBy({left:step(), behavior:'smooth'}));
   }
 
-  // work grid filters
+  // work grid filters — redistribute across two columns each time
   const wgGrid = document.getElementById('workgridGrid');
   if(wgGrid){
+    const colA = wgGrid.querySelector('.wg-col:nth-child(1)');
+    const colB = wgGrid.querySelector('.wg-col:nth-child(2)');
     const filterBtns = document.querySelectorAll('.wg-filter');
+    // cache all cards once, sorted by original order via data-idx
+    const allCards = Array.from(wgGrid.querySelectorAll('.wg-card'))
+      .sort((a,b) => (+a.dataset.idx) - (+b.dataset.idx));
+
+    function layout(filter){
+      const visible = allCards.filter(c => filter === 'All' || c.dataset.cat === filter);
+      // clear columns, then deal cards left/right/left/right
+      colA.innerHTML = '';
+      colB.innerHTML = '';
+      visible.forEach((card, i) => {
+        (i % 2 === 0 ? colA : colB).appendChild(card);
+      });
+    }
+
     filterBtns.forEach(btn=>{
       btn.addEventListener('click', ()=>{
-        const f = btn.dataset.filter;
         filterBtns.forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
-        wgGrid.querySelectorAll('.wg-card').forEach(card=>{
-          const show = (f === 'All' || card.dataset.cat === f);
-          card.classList.toggle('is-hidden', !show);
-        });
+        layout(btn.dataset.filter);
       });
     });
   }
