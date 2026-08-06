@@ -210,11 +210,18 @@ function initEO(){
 
     function layout(filter){
       const visible = allCards.filter(c => filter === 'All' || c.dataset.cat === filter);
-      // clear columns, then deal cards left/right/left/right
       colA.innerHTML = '';
       colB.innerHTML = '';
       visible.forEach((card, i) => {
         (i % 2 === 0 ? colA : colB).appendChild(card);
+        // replay reveal
+        card.classList.remove('in');
+      });
+      // next frame, reveal them in a gentle stagger
+      requestAnimationFrame(()=>{
+        visible.forEach((card, i)=>{
+          setTimeout(()=>card.classList.add('in'), 40 + i*70);
+        });
       });
     }
 

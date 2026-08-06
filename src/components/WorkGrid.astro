@@ -32,7 +32,7 @@ const right = withIdx.filter((_, i) => i % 2 === 1);
   <div class="workgrid-cols" id="workgridGrid">
     <div class="wg-col">
       {left.map((p) => (
-        <a href={p.slug} class="wg-card" data-cat={p.cat} data-idx={p.idx}>
+        <a href={p.slug} class="wg-card scroll-reveal" data-cat={p.cat} data-idx={p.idx}>
           <div class="wg-thumb" style={`aspect-ratio:${p.ratio}`}><img src={p.img} alt={p.name} loading="lazy" /></div>
           <div class="wg-meta">
             <h3 class="wg-name">{p.name}</h3>
@@ -43,7 +43,7 @@ const right = withIdx.filter((_, i) => i % 2 === 1);
     </div>
     <div class="wg-col wg-col-offset">
       {right.map((p) => (
-        <a href={p.slug} class="wg-card" data-cat={p.cat} data-idx={p.idx}>
+        <a href={p.slug} class="wg-card scroll-reveal" data-cat={p.cat} data-idx={p.idx}>
           <div class="wg-thumb" style={`aspect-ratio:${p.ratio}`}><img src={p.img} alt={p.name} loading="lazy" /></div>
           <div class="wg-meta">
             <h3 class="wg-name">{p.name}</h3>
