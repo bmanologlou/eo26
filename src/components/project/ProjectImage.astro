@@ -3,7 +3,7 @@ const { src, alt = "", caption, title } = Astro.props;
 ---
 <section class="pj-block">
   <div class="pj-inner">
-    {title && <h3 class="pj-block-title">/{title}</h3>}
+    {title && <h3 class="pj-block-title">{title}</h3>}
     <figure class="pj-fig">
       {src ? <img src={src} alt={alt} /> : <div class="pj-ph"><span>Image</span></div>}
       {caption && <figcaption class="pj-cap">{caption}</figcaption>}
