@@ -130,7 +130,7 @@ const {
   @media(max-width:760px){
     .pj-hero-inner,.pj-overview,.pj-statement-inner,.pj-textblock-inner{ padding-left:var(--pj-edge); }
   }
-  .pj-hero{ width:100%; padding-top:clamp(130px,20vh,210px); padding-bottom:clamp(28px,4vh,52px); }
+  .pj-hero{ width:100%; padding-top:clamp(130px,20vh,210px); padding-bottom:clamp(44px,7vh,88px); }
   .pj-eyebrow{ display:block; margin-bottom:22px; }
   .pj-title{
     font-family:'Clash Display',sans-serif;font-weight:600;
@@ -144,7 +144,15 @@ const {
   .pj-intro{
     font-family:'Erode',serif;font-weight:400;
     font-size:clamp(16px,1.7vw,20px);line-height:1.55;
-    margin:clamp(30px,4.5vh,52px) 0 0;max-width:var(--measure-text);opacity:.92;
+    margin:clamp(40px,6vh,72px) 0 0;max-width:var(--measure-text);opacity:.92;
+  }
+  .pj-tags{
+    display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;
+    margin:clamp(32px,4.5vh,52px) 0 0;
+  }
+  .pj-tag{
+    font-family:'Switzer',sans-serif;font-weight:500;font-size:14px;
+    border:1px solid currentColor;border-radius:999px;padding:8px 16px;opacity:.9;
   }
   .pj-tags{
     list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;
@@ -257,6 +265,7 @@ const {
   .pj-slider-nav{ display:flex;gap:10px; }
   .pj-slider-track{
     display:flex;gap:clamp(16px,2vw,28px);padding-left:var(--pj-edge);
+    scroll-padding-left:var(--pj-edge);
     overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;
     -ms-overflow-style:none;scrollbar-width:none;
   }
