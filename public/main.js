@@ -260,6 +260,25 @@ function initEO(){
     if(next) next.addEventListener('click', ()=>track.scrollBy({left:step(),behavior:'smooth'}));
   });
 
+  // next-project slide-up transition trigger
+  const pjNext = document.querySelector('.pj-next');
+  if(pjNext && !window.__pjNextBound){
+    window.__pjNextBound = true;
+    document.addEventListener('click', (e)=>{
+      const link = e.target.closest && e.target.closest('.pj-next');
+      if(link){ window.__pjAdvancing = true; }
+    });
+    document.addEventListener('astro:before-swap', ()=>{
+      if(window.__pjAdvancing){ document.documentElement.classList.add('pj-advancing'); }
+    });
+    document.addEventListener('astro:after-swap', ()=>{
+      if(window.__pjAdvancing){
+        window.__pjAdvancing = false;
+        requestAnimationFrame(()=>document.documentElement.classList.remove('pj-advancing'));
+      }
+    });
+  }
+
 }
 if (document.readyState !== 'loading') { initEO(); }
 document.addEventListener('astro:page-load', initEO);
