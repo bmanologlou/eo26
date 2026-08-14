@@ -111,21 +111,21 @@ const {
 
   /* ===== PROJECT DETAIL PAGE ===== */
   /* --pj-edge: header gutter (logo/button inset). text blocks start at column 2 of 12. */
-  :root{ --pj-gap:clamp(56px,9vh,120px); --pj-edge:clamp(20px,5vw,64px); }
+  :root{ --pj-gap:clamp(56px,9vh,120px); --pj-edge:clamp(20px,5vw,64px); --pj-edge-r:max(2px, calc(var(--pj-edge) - 18px)); }
   .pj{ display:block; }
   .pj > *{ margin:0; }
   .pj > * + *{ margin-top:var(--pj-gap); }
   .pj-heroimg-flush{ margin-top:0 !important; }
-  /* contained media: aligns with header logo (left) and button (right) */
-  .pj-inner{ width:100%; padding:0 var(--pj-edge); }
-  /* text blocks: start at column 2, end at edge — identical for all */
+  /* contained media: left aligns to logo, right aligns to button border (button sits 18px past header padding) */
+  .pj-inner{ width:100%; padding-left:var(--pj-edge); padding-right:var(--pj-edge-r); }
+  /* text blocks: start at column 2, end at button border — identical for all */
   .pj-hero-inner,
   .pj-overview,
   .pj-statement-inner,
   .pj-textblock-inner{
     width:100%;
-    padding-left:calc(var(--pj-edge) + (100% - 2 * var(--pj-edge)) / 12);
-    padding-right:var(--pj-edge);
+    padding-left:calc(var(--pj-edge) + (100% - var(--pj-edge) - var(--pj-edge-r)) / 12);
+    padding-right:var(--pj-edge-r);
   }
   @media(max-width:760px){
     .pj-hero-inner,.pj-overview,.pj-statement-inner,.pj-textblock-inner{ padding-left:var(--pj-edge); }
@@ -166,10 +166,14 @@ const {
   .pj-services{ list-style:none;margin:0;padding:0; }
   .pj-services li{
     font-family:'Switzer',sans-serif;font-weight:500;font-size:16px;
-    padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink);
+    padding:6px 0;color:var(--ink);
   }
-  .pj-services li:first-child{ border-top:1px solid var(--line); }
-  .pj-block-title{ display:block;margin-bottom:22px; }
+  .pj-block-title{
+    display:block;margin:0 0 22px;
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(20px,2.2vw,28px);line-height:1.05;letter-spacing:-.02em;
+    color:var(--ink);
+  }
   .pj-fig{ margin:0;width:100%; }
   .pj-fig img{ width:100%;display:block;border-radius:10px; }
   .pj-cap{
