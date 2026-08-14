@@ -1,7 +1,13 @@
 ---
-// items: [{ src, alt, caption, w }]  w: "sm" | "md" | "lg"
+// items: [{ src, alt, caption }] — all uniform size
 const { title, items = [] } = Astro.props;
-const fallback = [{w:"lg"},{w:"sm"},{w:"md"},{w:"lg"},{w:"sm"},{w:"md"}];
+const fallback = [
+  { caption: "Digital process" },
+  { caption: "Illustration process" },
+  { caption: "Purpose activity" },
+  { caption: "Quill experimentation" },
+  { caption: "Workshop" },
+];
 const list = items.length ? items : fallback;
 ---
 <section class="pj-block">
@@ -14,7 +20,7 @@ const list = items.length ? items : fallback;
   </div>
   <div class="pj-slider-track" data-pjslider-track>
     {list.map((it) => (
-      <figure class={`pj-slide w-${it.w || "md"}`}>
+      <figure class="pj-slide">
         {it.src ? <img src={it.src} alt={it.alt || ""} loading="lazy" /> : <div class="pj-ph pj-slide-ph"><span>Image</span></div>}
         {it.caption && <figcaption class="pj-cap">{it.caption}</figcaption>}
       </figure>
