@@ -1,5 +1,5 @@
 ---
-const { title, subtitle, intro, bg = "#1414BE", fg = "#ffffff" } = Astro.props;
+const { title, subtitle, intro, tags = [], bg = "#1414BE", fg = "#ffffff" } = Astro.props;
 ---
 <section class="pj-hero" style={`background:${bg};color:${fg};`}>
   <div class="pj-hero-inner">
@@ -7,5 +7,10 @@ const { title, subtitle, intro, bg = "#1414BE", fg = "#ffffff" } = Astro.props;
     <h1 class="pj-title">{title}</h1>
     {subtitle && <p class="pj-subtitle">{subtitle}</p>}
     {intro && <p class="pj-intro">{intro}</p>}
+    {tags.length > 0 && (
+      <ul class="pj-tags">
+        {tags.map((t) => <li class="pj-tag" style={`border-color:${fg};color:${fg};`}>{t}</li>)}
+      </ul>
+    )}
   </div>
 </section>
