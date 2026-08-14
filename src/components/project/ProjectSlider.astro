@@ -1,0 +1,23 @@
+---
+// items: [{ src, alt, caption, w }]  w: "sm" | "md" | "lg"
+const { title, items = [] } = Astro.props;
+const fallback = [{w:"lg"},{w:"sm"},{w:"md"},{w:"lg"},{w:"sm"},{w:"md"}];
+const list = items.length ? items : fallback;
+---
+<section class="pj-block">
+  <div class="pj-slider-head pj-inner">
+    {title && <h3 class="pj-block-title">{title}</h3>}
+    <div class="pj-slider-nav" aria-hidden="true">
+      <button class="studio-arrow" data-pjslider-prev aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="studio-arrow" data-pjslider-next aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+  <div class="pj-slider-track" data-pjslider-track>
+    {list.map((it) => (
+      <figure class={`pj-slide w-${it.w || "md"}`}>
+        {it.src ? <img src={it.src} alt={it.alt || ""} loading="lazy" /> : <div class="pj-ph pj-slide-ph"><span>Image</span></div>}
+        {it.caption && <figcaption class="pj-cap">{it.caption}</figcaption>}
+      </figure>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,16 @@
+---
+// layout: "image-left" | "image-right"
+const { layout = "image-left", title, body, src, alt = "", caption } = Astro.props;
+---
+<section class={`pj-block pj-imagetext ${layout === "image-right" ? "is-right" : "is-left"}`}>
+  <div class="pj-inner pj-imagetext-grid">
+    <figure class="pj-fig pj-imagetext-media">
+      {src ? <img src={src} alt={alt} /> : <div class="pj-ph"><span>Image</span></div>}
+      {caption && <figcaption class="pj-cap">{caption}</figcaption>}
+    </figure>
+    <div class="pj-imagetext-copy">
+      {title && <h3 class="pj-h3">{title}</h3>}
+      {body && <p class="pj-body">{body}</p>}
+    </div>
+  </div>
+</section>

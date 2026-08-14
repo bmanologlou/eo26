@@ -1,0 +1,12 @@
+---
+const { eyebrow = "Note", title, body } = Astro.props;
+---
+<section class="pj-block">
+  <div class="pj-textblock-inner pj-textblock-grid">
+    <span class="label pj-eyebrow">/{eyebrow}</span>
+    <div class="pj-textblock-copy">
+      {title && <h3 class="pj-textblock-title">{title}</h3>}
+      {body && <p class="pj-body">{body}</p>}
+    </div>
+  </div>
+</section>

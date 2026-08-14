@@ -225,6 +225,47 @@ const {
     .pj-overview{ grid-template-columns:1fr;gap:32px; }
     .pj-twoup{ grid-template-columns:1fr!important;gap:16px; }
   }
+
+  /* Image + text side by side */
+  .pj-imagetext-grid{ display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center; }
+  .pj-imagetext.is-right .pj-imagetext-media{ order:2; }
+  .pj-h3{
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(24px,3vw,38px);line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin:0 0 16px;
+  }
+  /* Video */
+  .pj-video{ width:100%;border-radius:10px;overflow:hidden;background:var(--paper-2); }
+  .pj-video video{ width:100%;display:block; }
+  .pj-ph-video{ aspect-ratio:16/9;border-radius:10px; }
+  /* Text block: eyebrow left, title+body right (2/3) */
+  .pj-textblock-grid{ display:grid;grid-template-columns:1fr 2fr;gap:clamp(24px,5vw,80px);align-items:start; }
+  .pj-textblock-title{
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(24px,3.2vw,42px);line-height:1.05;letter-spacing:-.025em;color:var(--ink);margin:0 0 18px;
+  }
+  /* Slider (bento, like About studio strip) */
+  .pj-slider-head{ display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:24px; }
+  .pj-slider-head .pj-block-title{ margin:0; }
+  .pj-slider-nav{ display:flex;gap:10px; }
+  .pj-slider-track{
+    display:flex;gap:16px;padding-left:var(--pj-edge);
+    overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;
+    -ms-overflow-style:none;scrollbar-width:none;
+  }
+  .pj-slider-track::-webkit-scrollbar{ display:none; }
+  .pj-slide{ flex:0 0 auto;height:clamp(300px,44vh,460px);margin:0;scroll-snap-align:start; }
+  .pj-slide:last-child{ margin-right:var(--pj-edge); }
+  .pj-slide.w-sm{ width:clamp(220px,26vw,320px); }
+  .pj-slide.w-md{ width:clamp(300px,36vw,460px); }
+  .pj-slide.w-lg{ width:clamp(380px,48vw,620px); }
+  .pj-slide img,.pj-slide-ph{ width:100%;height:100%;object-fit:cover;border-radius:10px;display:block; }
+  .pj-slide .pj-cap{ margin-top:10px; }
+  @media(max-width:760px){
+    .pj-imagetext-grid{ grid-template-columns:1fr;gap:24px; }
+    .pj-imagetext.is-right .pj-imagetext-media{ order:0; }
+    .pj-textblock-grid{ grid-template-columns:1fr;gap:16px; }
+    .pj-slider-nav{ display:none; }
+  }
   html.lenis,html.lenis body{height:auto;}
   .lenis.lenis-smooth{scroll-behavior:auto!important;}
   .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain;}

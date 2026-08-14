@@ -8,6 +8,10 @@ import ProjectOverview from '../../components/project/ProjectOverview.astro';
 import ProjectImage from '../../components/project/ProjectImage.astro';
 import ProjectTwoUp from '../../components/project/ProjectTwoUp.astro';
 import ProjectStatement from '../../components/project/ProjectStatement.astro';
+import ProjectImageText from '../../components/project/ProjectImageText.astro';
+import ProjectVideo from '../../components/project/ProjectVideo.astro';
+import ProjectTextBlock from '../../components/project/ProjectTextBlock.astro';
+import ProjectSlider from '../../components/project/ProjectSlider.astro';
 import ProjectNext from '../../components/project/ProjectNext.astro';
 ---
 
@@ -46,6 +50,36 @@ import ProjectNext from '../../components/project/ProjectNext.astro';
     left={{}}
     right={{}}
     split="left-wide"
+  />
+
+  <ProjectTwoUp
+    title="Reversed split"
+    left={{}}
+    right={{}}
+    split="right-wide"
+  />
+
+  <ProjectImageText
+    layout="image-left"
+    title="A system, not just a look."
+    body="We built a flexible identity that works across every touchpoint — from packaging to app to storefront — without losing its character."
+    caption="Brand system in use."
+  />
+
+  <ProjectImageText
+    layout="image-right"
+    title="Built to flex."
+    body="The same core elements rearrange to fit any format, so the brand always feels like itself wherever it shows up."
+  />
+
+  <ProjectSlider title="Process" />
+
+  <ProjectVideo title="In motion" />
+
+  <ProjectTextBlock
+    eyebrow="Outcome"
+    title="A brand that finally matched the ambition behind it."
+    body="The relaunch gave SleepnLife a clear, ownable position and a visual language the whole team could build on — and it reframed how the category talks about rest."
   />
 
   <ProjectImage caption="Packaging system across the range." />

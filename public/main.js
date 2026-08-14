@@ -234,6 +234,18 @@ function initEO(){
     });
   }
 
+  // project sliders (bento) — arrow scroll
+  document.querySelectorAll('[data-pjslider-track]').forEach(track=>{
+    if(track.__bound) return; track.__bound = true;
+    const wrap = track.closest('section');
+    if(!wrap) return;
+    const prev = wrap.querySelector('[data-pjslider-prev]');
+    const next = wrap.querySelector('[data-pjslider-next]');
+    const step = ()=>Math.max(320, track.clientWidth*0.7);
+    if(prev) prev.addEventListener('click', ()=>track.scrollBy({left:-step(),behavior:'smooth'}));
+    if(next) next.addEventListener('click', ()=>track.scrollBy({left:step(),behavior:'smooth'}));
+  });
+
 }
 if (document.readyState !== 'loading') { initEO(); }
 document.addEventListener('astro:page-load', initEO);

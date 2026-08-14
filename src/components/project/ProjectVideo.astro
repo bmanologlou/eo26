@@ -1,0 +1,13 @@
+---
+const { src, poster, title } = Astro.props;
+---
+<section class="pj-block">
+  <div class="pj-inner">
+    {title && <h3 class="pj-block-title">{title}</h3>}
+    <div class="pj-video">
+      {src
+        ? <video src={src} poster={poster} playsinline muted loop autoplay></video>
+        : <div class="pj-ph pj-ph-video"><span>Video</span></div>}
+    </div>
+  </div>
+</section>
