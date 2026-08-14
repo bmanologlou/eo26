@@ -248,11 +248,13 @@ const {
     font-family:'Clash Display',sans-serif;font-weight:600;
     font-size:clamp(36px,6vw,88px);line-height:1;letter-spacing:-.03em;
   }
-  /* next-project slide-up transition */
-  @keyframes pj-slide-out-up{ from{transform:translateY(0);} to{transform:translateY(-100%);} }
-  @keyframes pj-slide-in-up{ from{transform:translateY(100%);} to{transform:translateY(0);} }
-  html.pj-advancing::view-transition-old(root){ animation:pj-slide-out-up .6s cubic-bezier(.7,0,.3,1) both; }
-  html.pj-advancing::view-transition-new(root){ animation:pj-slide-in-up .6s cubic-bezier(.7,0,.3,1) both; }
+  /* color curtain for next-project transition */
+  #pj-curtain{
+    position:fixed;left:0;right:0;bottom:0;height:0;z-index:9999;
+    pointer-events:none;will-change:height;
+  }
+  #pj-curtain.rising{ height:100vh;transition:height .55s cubic-bezier(.7,0,.25,1); }
+  #pj-curtain.falling{ height:0;transition:height .5s cubic-bezier(.7,0,.25,1); }
   @media(max-width:760px){
     .pj-overview{ grid-template-columns:1fr;gap:32px; }
     .pj-twoup{ grid-template-columns:1fr!important;gap:16px; }

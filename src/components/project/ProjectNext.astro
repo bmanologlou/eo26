@@ -1,7 +1,7 @@
 ---
-const { name, img, href = "#" } = Astro.props;
+const { name, img, href = "#", color = "#1414BE" } = Astro.props;
 ---
-<a class="pj-next" href={href}>
+<a class="pj-next" href={href} data-next-color={color}>
   <div class="pj-next-inner">
     <span class="pj-next-label">Next Project</span>
     <span class="pj-next-name">{name}</span>

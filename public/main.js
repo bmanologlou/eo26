@@ -260,22 +260,46 @@ function initEO(){
     if(next) next.addEventListener('click', ()=>track.scrollBy({left:step(),behavior:'smooth'}));
   });
 
-  // next-project slide-up transition trigger
+  // next-project color curtain transition
   const pjNext = document.querySelector('.pj-next');
+
+  function pjCurtainEl(){
+    let c = document.getElementById('pj-curtain');
+    if(!c){ c = document.createElement('div'); c.id = 'pj-curtain'; document.body.appendChild(c); }
+    return c;
+  }
+
+  // on arrival: if we came via a next-project click, show full curtain then drop it
+  const arriveColor = sessionStorage.getItem('pjNextColor');
+  if(arriveColor){
+    sessionStorage.removeItem('pjNextColor');
+    const c = pjCurtainEl();
+    c.style.background = arriveColor;
+    c.classList.add('rising');
+    void c.offsetHeight;
+    requestAnimationFrame(()=>{
+      c.classList.remove('rising');
+      c.classList.add('falling');
+      setTimeout(()=>c.remove(), 520);
+    });
+  }
+
   if(pjNext && !window.__pjNextBound){
     window.__pjNextBound = true;
     document.addEventListener('click', (e)=>{
       const link = e.target.closest && e.target.closest('.pj-next');
-      if(link){ window.__pjAdvancing = true; }
-    });
-    document.addEventListener('astro:before-swap', ()=>{
-      if(window.__pjAdvancing){ document.documentElement.classList.add('pj-advancing'); }
-    });
-    document.addEventListener('astro:after-swap', ()=>{
-      if(window.__pjAdvancing){
-        window.__pjAdvancing = false;
-        requestAnimationFrame(()=>document.documentElement.classList.remove('pj-advancing'));
-      }
+      if(!link) return;
+      const href = link.getAttribute('href');
+      if(!href || href === '#') return;
+      e.preventDefault();
+      const color = link.dataset.nextColor || '#1414BE';
+      sessionStorage.setItem('pjNextColor', color);
+      const c = pjCurtainEl();
+      c.style.background = color;
+      c.classList.remove('falling');
+      void c.offsetHeight;
+      c.classList.add('rising');
+      setTimeout(()=>{ window.location.href = href; }, 580);
     });
   }
 
