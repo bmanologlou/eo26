@@ -1,11 +1,11 @@
 ---
 const { title, subtitle, intro, bg = "#1414BE", fg = "#ffffff" } = Astro.props;
 ---
-<header class="pj-hero" style={`background:${bg};color:${fg};`}>
+<section class="pj-hero" style={`background:${bg};color:${fg};`}>
   <div class="pj-hero-inner">
     <span class="label pj-eyebrow" style={`color:${fg};opacity:.6;`}>/Project</span>
     <h1 class="pj-title">{title}</h1>
     {subtitle && <p class="pj-subtitle">{subtitle}</p>}
     {intro && <p class="pj-intro">{intro}</p>}
   </div>
-</header>
+</section>
