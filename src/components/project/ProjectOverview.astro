@@ -1,0 +1,18 @@
+---
+const { heading, body, services = [] } = Astro.props;
+---
+<section class="pj-block">
+  <div class="pj-inner pj-overview">
+    <div class="pj-overview-main">
+      <span class="label pj-eyebrow">/Overview</span>
+      {heading && <h2 class="pj-h2">{heading}</h2>}
+      {body && <p class="pj-body">{body}</p>}
+    </div>
+    <div class="pj-overview-side">
+      <span class="label pj-eyebrow">/Services</span>
+      <ul class="pj-services">
+        {services.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>

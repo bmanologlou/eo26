@@ -1,0 +1,19 @@
+---
+const { title, left, right, split = "1 / 1" } = Astro.props;
+// split example: "1 / 1" equal, "2 / 3" left narrow, "3 / 2" left wide
+---
+<section class="pj-block">
+  <div class="pj-inner">
+    {title && <span class="label pj-eyebrow pj-block-title">{title}</span>}
+    <div class="pj-twoup" style={`grid-template-columns:${split};`}>
+      <figure class="pj-fig">
+        {left?.src ? <img src={left.src} alt={left.alt || ""} /> : <div class="pj-ph"><span>Image</span></div>}
+        {left?.caption && <figcaption class="pj-cap">{left.caption}</figcaption>}
+      </figure>
+      <figure class="pj-fig">
+        {right?.src ? <img src={right.src} alt={right.alt || ""} /> : <div class="pj-ph"><span>Image</span></div>}
+        {right?.caption && <figcaption class="pj-cap">{right.caption}</figcaption>}
+      </figure>
+    </div>
+  </div>
+</section>

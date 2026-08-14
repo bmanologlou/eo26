@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectHero from '../../components/project/ProjectHero.astro';
+import ProjectHeroImage from '../../components/project/ProjectHeroImage.astro';
+import ProjectOverview from '../../components/project/ProjectOverview.astro';
+import ProjectImage from '../../components/project/ProjectImage.astro';
+import ProjectTwoUp from '../../components/project/ProjectTwoUp.astro';
+import ProjectStatement from '../../components/project/ProjectStatement.astro';
+import ProjectNext from '../../components/project/ProjectNext.astro';
+---
+
+<Base title="SleepnLife — Eternal Optimists" description="A sleep brand reframed around the morning.">
+  <Header />
+
+  <ProjectHero
+    title="SleepnLife"
+    subtitle="A sleep brand reframed around the morning, not the night."
+    intro="SleepnLife came to us with a simple product and a crowded category. We rebuilt the brand around a single, optimistic idea — that good sleep is really about the day it makes possible."
+    bg="#1414BE"
+    fg="#ffffff"
+  />
+
+  <ProjectHeroImage />
+
+  <ProjectOverview
+    heading="From a product about night, to a brand about mornings."
+    body="We led strategy, positioning and a complete visual identity. The work reframed the category, moving the story away from the bed and toward everything a well-rested day makes possible — from the tagline to a full visual language."
+    services={["Strategy", "Identity", "Design", "Art Direction"]}
+  />
+
+  <ProjectImage title="Identity" caption="The primary logotype and mark." />
+
+  <ProjectTwoUp
+    left={{ caption: "Colour system" }}
+    right={{ caption: "Typographic scale" }}
+    split="1 / 1"
+  />
+
+  <ProjectStatement text="Rest, reframed as a good day waiting to happen." />
+
+  <ProjectTwoUp
+    title="Applications"
+    left={{}}
+    right={{}}
+    split="3 / 2"
+  />
+
+  <ProjectImage caption="Packaging system across the range." />
+
+  <ProjectHeroImage />
+
+  <ProjectNext name="EduPaths" />
+
+  <Footer />
+  <script is:inline defer src="/main.js"></script>
+</Base>

@@ -1,0 +1,12 @@
+---
+const { name, img, href = "#" } = Astro.props;
+---
+<a class="pj-next" href={href}>
+  <div class="pj-next-inner">
+    <span class="pj-next-label">Next Project</span>
+    <span class="pj-next-name">{name}</span>
+  </div>
+  <div class="pj-next-img">
+    {img ? <img src={img} alt={name} /> : <div class="pj-ph pj-ph-full"><span>{name}</span></div>}
+  </div>
+</a>

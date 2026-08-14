@@ -1,0 +1,12 @@
+---
+const { src, alt = "", caption, title } = Astro.props;
+---
+<section class="pj-block">
+  <div class="pj-inner">
+    {title && <span class="label pj-eyebrow pj-block-title">{title}</span>}
+    <figure class="pj-fig">
+      {src ? <img src={src} alt={alt} /> : <div class="pj-ph"><span>Image</span></div>}
+      {caption && <figcaption class="pj-cap">{caption}</figcaption>}
+    </figure>
+  </div>
+</section>
