@@ -11,7 +11,7 @@ const shown = tags.slice(0, 2);
     {shown.length > 0 && (
       <ul class="pj-tags">
         {shown.map((t) => (
-          <li><a class="pj-tag" href={`/work?filter=${encodeURIComponent(t)}`} style={`border-color:${fg};color:${fg};`}>{t}</a></li>
+          <li><a class="pj-tag" href={`/work?filter=${encodeURIComponent(t)}`} data-astro-reload style={`border-color:${fg};color:${fg};`}>{t}</a></li>
         ))}
       </ul>
     )}

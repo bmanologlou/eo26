@@ -1,0 +1,18 @@
+---
+// items: [{ src, alt, caption }] — up to 3, equal width
+const { title, items = [{},{},{}] } = Astro.props;
+const three = items.slice(0, 3);
+---
+<section class="pj-block">
+  <div class="pj-inner">
+    {title && <h3 class="pj-block-title">{title}</h3>}
+    <div class="pj-threeup">
+      {three.map((it) => (
+        <figure class="pj-fig">
+          {it.src ? <img src={it.src} alt={it.alt || ""} loading="lazy" /> : <div class="pj-ph"><span>Image</span></div>}
+          {it.caption && <figcaption class="pj-cap">{it.caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
