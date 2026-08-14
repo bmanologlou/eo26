@@ -332,11 +332,14 @@ const {
     position:fixed;top:0;left:0;right:0;z-index:100;
     display:flex;align-items:center;justify-content:space-between;
     padding:22px clamp(20px,5vw,64px);
-    mix-blend-mode:difference;
+    color:var(--header-fg, #0c0c12);
+    transition:color .4s ease;
   }
+  body[data-header="dark"] header{ --header-fg:#fff; }
+  body[data-header="light"] header{ --header-fg:#0c0c12; }
   .logo{
     font-family:'Clash Display',sans-serif;font-weight:600;
-    font-size:18px;letter-spacing:-.01em;color:#fff;
+    font-size:18px;letter-spacing:-.01em;color:var(--header-fg,#0c0c12);
     display:flex;align-items:center;gap:9px;
   }
   .logo .mark{height:16px;width:auto;display:inline-block;color:inherit;}
@@ -345,25 +348,24 @@ const {
   body.scrolled .logo-short{display:inline;}
   nav{display:flex;gap:30px;align-items:center;}
   nav a{
-    font-size:14px;font-weight:500;color:#fff;letter-spacing:.01em;
+    font-size:14px;font-weight:500;color:var(--header-fg,#0c0c12);letter-spacing:.01em;
     position:relative;display:inline-flex;align-items:center;
-    transition:opacity .25s ease;
+    transition:opacity .25s ease,color .4s ease;
   }
   nav a:hover{opacity:.55;}
   .nav-cta{
     margin-right:-18px;
-    color:#fff !important;border:1px solid #fff !important;
+    color:var(--header-fg,#0c0c12) !important;border:1px solid var(--header-fg,#0c0c12) !important;
   }
   /* burger as a fixed dot */
   .burger{
     display:none;align-items:center;justify-content:center;
     width:40px;height:40px;cursor:pointer;background:none;border:none;padding:0;
     position:fixed;top:12px;right:clamp(8px,3vw,28px);z-index:110;
-    mix-blend-mode:difference;
   }
   .burger .dot-btn{
-    width:16px;height:16px;border-radius:50%;background:#fff;
-    transition:transform .3s ease;
+    width:16px;height:16px;border-radius:50%;background:var(--header-fg,#0c0c12);
+    transition:transform .3s ease,background .4s ease;
   }
   .burger:hover .dot-btn{transform:scale(1.18);}
 
@@ -1173,7 +1175,7 @@ const {
   .policy-block a:hover{text-decoration:underline;}
 </style>
 </head>
-<body>
+<body data-header="light">
 <slot />
 </body>
 </html>

@@ -303,6 +303,25 @@ function initEO(){
     });
   }
 
+  // header light/dark theme based on section behind it
+  const darkZones = Array.from(document.querySelectorAll('[data-theme="dark"], .pj-hero'));
+  const headerBody = document.body;
+  function updateHeaderTheme(){
+    const probe = 30; // px below top — where the logo sits
+    let dark = false;
+    for(const el of darkZones){
+      const r = el.getBoundingClientRect();
+      if(r.top <= probe && r.bottom >= probe){ dark = true; break; }
+    }
+    headerBody.setAttribute('data-header', dark ? 'dark' : 'light');
+  }
+  if(!window.__headerThemeBound){
+    window.__headerThemeBound = true;
+    window.addEventListener('scroll', updateHeaderTheme, {passive:true});
+    window.addEventListener('resize', updateHeaderTheme, {passive:true});
+  }
+  updateHeaderTheme();
+
 }
 if (document.readyState !== 'loading') { initEO(); }
 document.addEventListener('astro:page-load', initEO);
