@@ -417,12 +417,12 @@ const {
   .work-thumb{
     aspect-ratio:4/5;border-radius:10px;overflow:hidden;background:var(--paper-2);
     position:relative;
+    transition:border-radius .28s cubic-bezier(.22,1,.36,1);
   }
   .work-thumb img{
     width:100%;height:100%;object-fit:cover;display:block;
-    transition:transform .7s cubic-bezier(.2,.7,.2,1);
   }
-  .work-card:hover .work-thumb img{transform:scale(1.05);}
+  .work-card:hover .work-thumb{border-radius:42px;}
   .work-meta{margin-top:16px;}
   .work-name{
     font-family:'Clash Display',sans-serif;font-weight:500;
