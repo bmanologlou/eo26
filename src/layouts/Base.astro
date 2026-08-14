@@ -123,7 +123,7 @@ const {
   .pj-overview,
   .pj-statement-inner,
   .pj-textblock-inner{ width:100%; padding:0 var(--pj-text); }
-  .pj-hero{ width:100%; padding-top:clamp(130px,20vh,210px); padding-bottom:clamp(56px,9vh,110px); }
+  .pj-hero{ width:100%; padding-top:clamp(130px,20vh,210px); padding-bottom:clamp(28px,4vh,52px); }
   .pj-eyebrow{ display:block; margin-bottom:22px; }
   .pj-title{
     font-family:'Clash Display',sans-serif;font-weight:600;
@@ -138,7 +138,9 @@ const {
     font-family:'Erode',serif;font-weight:400;
     font-size:clamp(16px,1.7vw,20px);line-height:1.55;
     margin:clamp(18px,2.4vh,26px) 0 0;max-width:var(--measure-text);opacity:.92;
+    margin-left:25%;
   }
+  @media(max-width:760px){ .pj-intro{ margin-left:0; } }
   .pj-fullscreen{ margin:0; width:100%; }
   .pj-fullscreen img, .pj-ph-full{ width:100%; display:block; }
   .pj-fullscreen img{ aspect-ratio:16/9; object-fit:cover; }
