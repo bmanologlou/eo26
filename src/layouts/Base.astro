@@ -180,7 +180,10 @@ const {
     font-family:'Switzer',sans-serif;font-weight:500;font-size:13px;
     color:var(--muted);margin-top:12px;
   }
-  .pj-twoup{ display:grid;gap:clamp(16px,2vw,28px); }
+  .pj-twoup{ display:grid;gap:clamp(16px,2vw,28px);align-items:start; }
+  .pj-twoup .pj-fig img,
+  .pj-twoup .pj-ph{ height:clamp(300px,42vw,540px);width:100%;object-fit:cover; }
+  .pj-twoup .pj-ph{ aspect-ratio:auto; }
   .pj-statement{
     font-family:'Clash Display',sans-serif;font-weight:500;
     font-size:clamp(28px,4.6vw,64px);line-height:1.08;letter-spacing:-.025em;
