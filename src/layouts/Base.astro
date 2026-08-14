@@ -406,8 +406,8 @@ const {
     font-size:clamp(34px,4.5vw,64px);letter-spacing:-.025em;line-height:1;margin-bottom:20px;
     transition:color .25s ease;
   }
-  .work-feature:hover .feature-name{color:var(--blue);}
-  .work-feature:hover .work-thumb{border-radius:42px;}
+  .work-feature:has(.feature-card:hover) .feature-name{color:var(--blue);}
+  .feature-card:hover .work-thumb{border-radius:42px;}
   .feature-desc{
     font-family:'Erode',serif;font-size:clamp(16px,1.4vw,19px);
     line-height:1.55;color:#33333a;margin-bottom:24px;
@@ -428,8 +428,8 @@ const {
   .work-card:hover .work-thumb{border-radius:42px;}
   .work-meta{margin-top:16px;}
   .work-name{
-    font-family:'Clash Display',sans-serif;font-weight:500;
-    font-size:clamp(18px,1.6vw,22px);letter-spacing:-.01em;
+    font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(18px,1.6vw,22px);letter-spacing:-.02em;
     transition:color .25s ease;
   }
   .work-card:hover .work-name{color:var(--blue);}
