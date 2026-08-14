@@ -1,7 +1,7 @@
 ---
-const { src, alt = "" } = Astro.props;
+const { src, alt = "", flush = false } = Astro.props;
 ---
-<section class="pj-block pj-heroimg">
+<section class={`pj-block pj-heroimg${flush ? " pj-heroimg-flush" : ""}`}>
   <figure class="pj-fullscreen">
     {src ? <img src={src} alt={alt} /> : <div class="pj-ph pj-ph-full"><span>Full-width image</span></div>}
   </figure>

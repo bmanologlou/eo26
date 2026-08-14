@@ -114,6 +114,7 @@ const {
   :root{ --pj-gap:clamp(56px,9vh,120px); --pj-edge:clamp(20px,5vw,64px); --pj-text:clamp(20px,9vw,150px); }
   /* flex column with gap = equal rhythm, no margin-collapse overlap */
   .pj{ display:flex;flex-direction:column;row-gap:var(--pj-gap); }
+  .pj-heroimg-flush{ margin-top:calc(-1 * var(--pj-gap)); }
   .pj > *{ margin:0; }
   /* contained media: aligns with header logo (left) and button (right) */
   .pj-inner{ width:100%; padding:0 var(--pj-edge); }
