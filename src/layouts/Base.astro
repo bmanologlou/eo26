@@ -112,9 +112,10 @@ const {
   /* ===== PROJECT DETAIL PAGE ===== */
   :root{ --pj-gap:clamp(56px,9vh,120px); --pj-inset:clamp(20px,5vw,64px); }
   .pj-block{ margin-top:var(--pj-gap); }
-  .pj-inner{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pj-inset); }
+  /* contained width: aligns with header logo (left) and button (right) */
+  .pj-inner{ width:100%; margin:0 auto; padding:0 var(--pj-inset); }
   .pj-hero{ width:100%; padding-top:clamp(130px,20vh,210px); padding-bottom:clamp(48px,8vh,90px); }
-  .pj-hero-inner{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pj-inset); }
+  .pj-hero-inner{ width:100%; margin:0 auto; padding:0 var(--pj-inset); }
   .pj-eyebrow{ display:block; margin-bottom:22px; }
   .pj-title{
     font-family:'Clash Display',sans-serif;font-weight:600;
