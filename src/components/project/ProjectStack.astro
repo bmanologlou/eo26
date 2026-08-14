@@ -1,0 +1,17 @@
+---
+// items: [{ src, alt, caption }] — stacked vertically, tight internal spacing
+const { title, items = [{},{}] } = Astro.props;
+---
+<section class="pj-block">
+  <div class="pj-inner">
+    {title && <h3 class="pj-block-title">{title}</h3>}
+    <div class="pj-stack">
+      {items.map((it) => (
+        <figure class="pj-fig pj-stack-item">
+          {it.src ? <img src={it.src} alt={it.alt || ""} loading="lazy" /> : <div class="pj-ph"><span>Image</span></div>}
+          {it.caption && <figcaption class="pj-cap">{it.caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
