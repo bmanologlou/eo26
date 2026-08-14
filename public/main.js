@@ -232,6 +232,18 @@ function initEO(){
         layout(btn.dataset.filter);
       });
     });
+
+    // apply filter from URL (?filter=Identity), e.g. arriving from a project tag
+    const params = new URLSearchParams(window.location.search);
+    const wanted = params.get('filter');
+    if(wanted){
+      const match = Array.from(filterBtns).find(b => b.dataset.filter.toLowerCase() === wanted.toLowerCase());
+      if(match){
+        filterBtns.forEach(b=>b.classList.remove('active'));
+        match.classList.add('active');
+        layout(match.dataset.filter);
+      }
+    }
   }
 
   // project sliders (bento) — arrow scroll
