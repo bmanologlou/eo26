@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectHero from '../../components/project/ProjectHero.astro';
+import ProjectHeroImage from '../../components/project/ProjectHeroImage.astro';
+import ProjectOverview from '../../components/project/ProjectOverview.astro';
+import ProjectStatement from '../../components/project/ProjectStatement.astro';
+import ProjectNext from '../../components/project/ProjectNext.astro';
+---
+
+<Base title="EduPaths — Eternal Optimists" description="A learning platform brand built for clarity and growth.">
+  <Header />
+
+  <main class="pj">
+    <ProjectHero
+      title="EduPaths"
+      subtitle="A learning platform brand built for clarity and growth."
+      intro="EduPaths needed a brand that felt as clear and encouraging as the learning it enables. We built a warm, confident identity that puts progress front and centre."
+      tags={["Strategy", "Design"]}
+      bg="#C8502D"
+      fg="#ffffff"
+    />
+
+    <ProjectHeroImage flush />
+
+    <ProjectOverview
+      heading="Learning that feels like momentum."
+      body="We developed the positioning, identity and design system — a warm, human brand that makes progress visible and keeps learners moving forward."
+      services={["Strategy", "Identity", "Design"]}
+    />
+
+    <ProjectStatement text="Every lesson, a step worth taking." />
+
+    <ProjectNext name="SleepnLife" href="/work/sample" color="#1414BE" />
+  </main>
+
+  <Footer />
+  <script is:inline defer src="/main.js"></script>
+</Base>
