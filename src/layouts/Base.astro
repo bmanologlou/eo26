@@ -180,10 +180,10 @@ const {
   .pj-fullscreen img{ aspect-ratio:16/10; max-height:88vh; object-fit:cover; }
   .pj-fullscreen picture{ display:block;width:100%; }
   .pj-fullscreen picture img{ width:100%; }
-  @media(max-width:760px){
-    .pj-fullscreen img,.pj-ph-full{ aspect-ratio:9/16;max-height:none; }
-  }
   .pj-ph-full{ aspect-ratio:16/10; max-height:88vh; }
+  @media(max-width:760px){
+    .pj-fullscreen img,.pj-fullscreen .pj-ph-full{ aspect-ratio:9/16 !important;max-height:none !important; }
+  }
   .pj-overview{
     display:grid;grid-template-columns:2fr 1fr;gap:clamp(32px,6vw,90px);
     margin:0 auto;
