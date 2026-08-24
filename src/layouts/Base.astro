@@ -60,6 +60,14 @@ const {
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <ViewTransitions />
+<script is:inline>
+  // runs in <head> before body paints: mark arriving project transition so the dot starts white (no flash)
+  try{
+    if(sessionStorage.getItem('pjNextColor')){
+      document.documentElement.setAttribute('data-arriving','1');
+    }
+  }catch(e){}
+</script>
 <style is:global>
   /* local variable fonts */
   @font-face{
@@ -344,6 +352,8 @@ const {
   body[data-header="light"]{ --header-fg:#0c0c12; }
   body.menu-open{ --header-fg:#0c0c12 !important; }
   body.menu-closing{ --header-fg:#0c0c12 !important; }
+  html[data-arriving] body{ --header-fg:#fff !important; }
+  html[data-arriving] .dot-btn{ transition:none !important; }
   .logo{
     font-family:'Clash Display',sans-serif;font-weight:600;
     font-size:18px;letter-spacing:-.01em;color:var(--header-fg,#0c0c12);
@@ -1184,15 +1194,6 @@ const {
 </style>
 </head>
 <body data-header="light">
-<script is:inline>
-  // pre-paint: if arriving via a project transition, set dark header immediately so the dot never flashes
-  try{
-    if(sessionStorage.getItem('pjNextColor')){
-      document.body.setAttribute('data-header','dark');
-      document.body.classList.add('pj-transitioning');
-    }
-  }catch(e){}
-</script>
 <slot />
 </body>
 </html>

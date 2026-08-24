@@ -292,7 +292,11 @@ function initEO(){
     requestAnimationFrame(()=>{
       c.classList.remove('rising');
       c.classList.add('falling');
-      setTimeout(()=>{ c.remove(); document.body.classList.remove('pj-transitioning'); }, 560);
+      setTimeout(()=>{
+        c.remove();
+        document.body.classList.remove('pj-transitioning');
+        document.documentElement.removeAttribute('data-arriving');
+      }, 560);
     });
   }
 
