@@ -291,7 +291,7 @@ function initEO(){
     requestAnimationFrame(()=>{
       c.classList.remove('rising');
       c.classList.add('falling');
-      setTimeout(()=>{ c.remove(); updateHeaderTheme(); }, 520);
+      setTimeout(()=>{ c.remove(); }, 520);
     });
   }
 
@@ -325,7 +325,10 @@ function initEO(){
       const r = el.getBoundingClientRect();
       if(r.top <= probe && r.bottom >= probe){ dark = true; break; }
     }
-    headerBody.setAttribute('data-header', dark ? 'dark' : 'light');
+    const val = dark ? 'dark' : 'light';
+    if(headerBody.getAttribute('data-header') !== val){
+      headerBody.setAttribute('data-header', val);
+    }
   }
   if(!window.__headerThemeBound){
     window.__headerThemeBound = true;
