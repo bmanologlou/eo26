@@ -9,7 +9,7 @@ const id = "fp-" + Math.random().toString(36).slice(2, 8);
       {title && <h3 class="pj-block-title">{title}</h3>}
       <button class="pj-fullpage-toggle" data-fullpage-toggle aria-expanded="false" aria-controls={id}>
         <span class="fp-label-more">{linkText}</span>
-        <span class="fp-label-less">Collapse</span>
+        <span class="fp-label-less">Show less</span>
       </button>
     </div>
     <div class="pj-fullpage-viewport" id={id} data-fullpage-viewport>
