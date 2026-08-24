@@ -1184,6 +1184,15 @@ const {
 </style>
 </head>
 <body data-header="light">
+<script is:inline>
+  // pre-paint: if arriving via a project transition, set dark header immediately so the dot never flashes
+  try{
+    if(sessionStorage.getItem('pjNextColor')){
+      document.body.setAttribute('data-header','dark');
+      document.body.classList.add('pj-transitioning');
+    }
+  }catch(e){}
+</script>
 <slot />
 </body>
 </html>
