@@ -115,15 +115,23 @@ function initEO(){
     document.addEventListener('click', (ev)=>{
       const b = ev.target.closest('#burger');
       if(b){
-        document.body.classList.toggle('menu-open');
+        if(document.body.classList.contains('menu-open')){
+          closeMenu();
+        } else {
+          document.body.classList.add('menu-open');
+        }
         return;
       }
       // close when tapping a link inside the mobile menu
       const link = ev.target.closest('#mobileMenu a');
-      if(link){
-        document.body.classList.remove('menu-open');
-      }
+      if(link){ closeMenu(); }
     });
+  }
+  function closeMenu(){
+    // hold the dark logo/dot until the overlay has retracted
+    document.body.classList.add('menu-closing');
+    document.body.classList.remove('menu-open');
+    setTimeout(()=>document.body.classList.remove('menu-closing'), 620);
   }
 
   // POV keyword hover -> explanation panel (desktop only)
@@ -277,10 +285,13 @@ function initEO(){
     c.style.background = arriveColor;
     c.classList.add('rising');
     void c.offsetHeight;
+    // set the header theme now (arriving page opens on a colored hero) so the dot is correct when revealed
+    const heroEl = document.querySelector('.pj-hero, [data-theme="dark"]');
+    document.body.setAttribute('data-header', heroEl ? 'dark' : 'light');
     requestAnimationFrame(()=>{
       c.classList.remove('rising');
       c.classList.add('falling');
-      setTimeout(()=>c.remove(), 520);
+      setTimeout(()=>{ c.remove(); updateHeaderTheme(); }, 520);
     });
   }
 
@@ -307,6 +318,7 @@ function initEO(){
   const darkZones = Array.from(document.querySelectorAll('[data-theme="dark"], .pj-hero'));
   const headerBody = document.body;
   function updateHeaderTheme(){
+    if(document.getElementById('pj-curtain')) return; // don't flip during transition
     const probe = 30; // px below top — where the logo sits
     let dark = false;
     for(const el of darkZones){
