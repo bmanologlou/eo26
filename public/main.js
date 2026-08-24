@@ -281,6 +281,7 @@ function initEO(){
   const arriveColor = sessionStorage.getItem('pjNextColor');
   if(arriveColor){
     sessionStorage.removeItem('pjNextColor');
+    document.body.classList.add('pj-transitioning');
     const c = pjCurtainEl();
     c.style.background = arriveColor;
     c.classList.add('rising');
@@ -291,7 +292,7 @@ function initEO(){
     requestAnimationFrame(()=>{
       c.classList.remove('rising');
       c.classList.add('falling');
-      setTimeout(()=>{ c.remove(); }, 520);
+      setTimeout(()=>{ c.remove(); document.body.classList.remove('pj-transitioning'); }, 560);
     });
   }
 
