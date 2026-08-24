@@ -342,6 +342,26 @@ function initEO(){
   }
   updateHeaderTheme();
 
+  // full-page website block — expand to full image height on toggle
+  document.querySelectorAll('[data-fullpage]').forEach(block=>{
+    if(block.__fpBound) return; block.__fpBound = true;
+    const btn = block.querySelector('[data-fullpage-toggle]');
+    const vp = block.querySelector('[data-fullpage-viewport]');
+    if(!btn || !vp) return;
+    btn.addEventListener('click', ()=>{
+      const open = block.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if(open){
+        vp.style.height = vp.scrollHeight + 'px';
+      } else {
+        vp.style.height = '';
+        // scroll block back into view if its top is above the viewport
+        const top = block.getBoundingClientRect().top;
+        if(top < 0) block.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+
 }
 if (document.readyState !== 'loading') { initEO(); }
 document.addEventListener('astro:page-load', initEO);
