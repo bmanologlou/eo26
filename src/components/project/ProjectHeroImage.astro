@@ -1,8 +1,15 @@
 ---
-const { src, alt = "", flush = false } = Astro.props;
+const { src, srcMobile, alt = "", flush = false } = Astro.props;
 ---
 <section class={`pj-block pj-heroimg${flush ? " pj-heroimg-flush" : ""}`}>
   <figure class="pj-fullscreen">
-    {src ? <img src={src} alt={alt} /> : <div class="pj-ph pj-ph-full"><span>Full-width image</span></div>}
+    {src
+      ? (srcMobile
+          ? <picture>
+              <source media="(max-width:760px)" srcset={srcMobile} />
+              <img src={src} alt={alt} />
+            </picture>
+          : <img src={src} alt={alt} />)
+      : <div class="pj-ph pj-ph-full"><span>Full-width image</span></div>}
   </figure>
 </section>
