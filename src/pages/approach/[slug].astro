@@ -40,8 +40,10 @@ const next = pillars[(idx + 1) % pillars.length];
 
       <article class="pl-body">
         <span class="label pl-eyebrow scroll-reveal">/{pillar.name}</span>
-        <h2 class="pl-question scroll-reveal">{pillar.question}</h2>
-        <p class="pl-lead scroll-reveal" data-delay="180">{pillar.lead}</p>
+        <div class="pl-intro-group" data-stagger>
+          <h2 class="pl-question reveal-item">{pillar.question}</h2>
+          <p class="pl-lead reveal-item">{pillar.lead}</p>
+        </div>
 
         <div class="pl-section scroll-reveal">
           <h3 class="pl-h2">{pillar.benefitTitle}</h3>
