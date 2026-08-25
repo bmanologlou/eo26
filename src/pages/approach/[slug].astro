@@ -21,9 +21,9 @@ const next = pillars[(idx + 1) % pillars.length];
   <main class="pl">
     <div class="pl-top">
       <div class="pl-top-content">
-        <span class="label">/The Six Pillars</span>
-        <h1 class="pl-toptitle">The building blocks of a modern brand.</h1>
-        <p class="pl-topintro">Our six pillars describe how a brand is created, evolved and grown. Each one contributes essential elements to a brand's development, from the foundation it stands on to the momentum that keeps it moving. Together they form a complete approach; individually, each solves a distinct part of the puzzle.</p>
+        <span class="label scroll-reveal">/The Six Pillars</span>
+        <h1 class="pl-toptitle scroll-reveal">The building blocks of a modern brand.</h1>
+        <p class="pl-topintro scroll-reveal">Our six pillars describe how a brand is created, evolved and grown. Each one contributes essential elements to a brand's development, from the foundation it stands on to the momentum that keeps it moving. Together they form a complete approach; individually, each solves a distinct part of the puzzle.</p>
       </div>
     </div>
     <div class="pl-inner">
@@ -39,23 +39,23 @@ const next = pillars[(idx + 1) % pillars.length];
       </aside>
 
       <article class="pl-body">
-        <span class="label pl-eyebrow">/{pillar.name}</span>
-        <h2 class="pl-question">{pillar.question}</h2>
-        <p class="pl-lead">{pillar.lead}</p>
+        <span class="label pl-eyebrow scroll-reveal">/{pillar.name}</span>
+        <h2 class="pl-question scroll-reveal">{pillar.question}</h2>
+        <p class="pl-lead scroll-reveal">{pillar.lead}</p>
 
-        <div class="pl-section">
+        <div class="pl-section scroll-reveal">
           <h3 class="pl-h2">{pillar.benefitTitle}</h3>
           <p class="pl-text">{pillar.benefit}</p>
         </div>
 
-        <div class="pl-section">
+        <div class="pl-section scroll-reveal">
           <h3 class="pl-h2">What it can include</h3>
           <ul class="pl-services">
             {pillar.services.map((s) => <li>{s}</li>)}
           </ul>
         </div>
 
-        <a href={`/approach/${next.slug}`} class="pl-next">
+        <a href={`/approach/${next.slug}`} class="pl-next scroll-reveal">
           <span class="pl-next-label">Next pillar</span>
           <span class="pl-next-row">
             <span class="pl-next-name">{next.name}</span>
@@ -72,3 +72,8 @@ const next = pillars[(idx + 1) % pillars.length];
   <Footer />
   <script is:inline defer src="/main.js"></script>
 </Base>
+
+<style is:global>
+  body:has(.pl){ background:#EEEEFE; }
+  body:has(.pl) .cta-close, body:has(.pl) footer{ background:#EEEEFE; }
+</style>
