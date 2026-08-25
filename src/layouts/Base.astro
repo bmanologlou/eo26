@@ -803,13 +803,19 @@ const {
   .method-orbit{ display:flex;align-items:center;justify-content:center; }
   .orbit-svg{ width:min(100%,420px);height:auto;overflow:visible; }
   .orbit-ring{ fill:none;stroke:rgba(20,20,190,.22);stroke-width:1.5; }
-  .orbit-rotor{ transform-origin:100px 100px;transition:transform 1s cubic-bezier(.5,0,.2,1); }
   .orbit-dot{
     fill:#E6E6FE;stroke:var(--blue);stroke-width:1.5;
-    transition:fill .5s ease,r .5s ease;
+    transition:fill .5s cubic-bezier(.2,.7,.2,1),r .5s cubic-bezier(.2,.7,.2,1);
   }
   .orbit-dot.is-on{ fill:var(--blue); }
-  .orbit-marker{ fill:none;stroke:var(--blue);stroke-width:1.5;opacity:.5; }
+  .orbit-dot.is-current{ r:13; }
+  .orbit-label{
+    font-family:'Switzer',sans-serif;font-weight:600;font-size:11px;
+    fill:var(--blue);text-anchor:middle;dominant-baseline:central;
+    transition:fill .5s ease;
+  }
+  .orbit-dot.is-on + .orbit-label,
+  .orbit-label.is-on{ fill:#fff; }
   .method-copy{ position:relative;min-height:280px; }
   .mcopy{
     position:absolute;top:50%;left:0;transform:translateY(-40%);

@@ -362,21 +362,24 @@ function initEO(){
     });
   });
 
-  // method: orbit with 3 points — scroll activates each, rotor spins active dot to top, copy crossfades
+  // method: orbit with 3 points — scroll fills each point in turn, copy crossfades beside it
   const methodEl = document.querySelector('[data-method]');
   if(methodEl && !methodEl.__bound){
     methodEl.__bound = true;
-    const rotor = methodEl.querySelector('[data-rotor]');
     const dots = Array.from(methodEl.querySelectorAll('[data-dot]'));
+    const labels = Array.from(methodEl.querySelectorAll('[data-dotlabel]'));
     const copies = Array.from(methodEl.querySelectorAll('[data-mcopy]'));
     const zones = Array.from(methodEl.querySelectorAll('[data-mzone]'));
     let current = -1;
     const setActive = (idx)=>{
       if(idx === current) return;
       current = idx;
-      dots.forEach((d,i)=>d.classList.toggle('is-on', i === idx));
+      dots.forEach((d,i)=>{
+        d.classList.toggle('is-on', i <= idx);   // fill this and all previous
+        d.classList.toggle('is-current', i === idx);
+      });
+      labels.forEach((l,i)=>l.classList.toggle('is-on', i <= idx));
       copies.forEach((c,i)=>c.classList.toggle('is-active', i === idx));
-      if(rotor) rotor.style.transform = `rotate(${-120 * idx}deg)`;
     };
     const onScroll = ()=>{
       const mid = window.innerHeight * 0.5;
