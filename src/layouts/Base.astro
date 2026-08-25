@@ -792,45 +792,55 @@ const {
     padding:clamp(64px,10vh,120px) 0;
   }
   .method-inner{
-    max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);
+    max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);position:relative;
   }
   .method .label{color:var(--blue);opacity:.7;}
-  .method-steps{ margin-top:clamp(32px,5vh,60px);max-width:var(--measure-wide); }
-  .mstep{
-    display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3vw,44px);
-    padding-bottom:clamp(40px,7vh,88px);
+  .method-stage{
+    position:sticky;top:0;height:100vh;
+    display:grid;grid-template-columns:minmax(280px,42%) 1fr;
+    align-items:center;gap:clamp(40px,7vw,110px);
   }
-  .mstep:last-child{ padding-bottom:0; }
-  .mstep-marker{ position:relative;display:flex;flex-direction:column;align-items:center;padding-top:6px; }
-  .mstep-dot{
-    width:26px;height:26px;border-radius:50%;
-    border:2px solid var(--blue);background:transparent;flex:0 0 auto;
-    transition:background .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1);
+  .method-orbit{ display:flex;align-items:center;justify-content:center; }
+  .orbit-svg{ width:min(100%,420px);height:auto;overflow:visible; }
+  .orbit-ring{ fill:none;stroke:rgba(20,20,190,.22);stroke-width:1.5; }
+  .orbit-rotor{ transform-origin:100px 100px;transition:transform 1s cubic-bezier(.5,0,.2,1); }
+  .orbit-dot{
+    fill:#E6E6FE;stroke:var(--blue);stroke-width:1.5;
+    transition:fill .5s ease,r .5s ease;
   }
-  .mstep-line{
-    width:2px;flex:1;margin-top:10px;min-height:60px;
-    background:linear-gradient(to bottom, var(--blue) 0%, var(--blue) var(--fill,0%), rgba(20,20,190,.18) var(--fill,0%));
-    transition:none;
+  .orbit-dot.is-on{ fill:var(--blue); }
+  .orbit-marker{ fill:none;stroke:var(--blue);stroke-width:1.5;opacity:.5; }
+  .method-copy{ position:relative;min-height:280px; }
+  .mcopy{
+    position:absolute;top:50%;left:0;transform:translateY(-40%);
+    opacity:0;visibility:hidden;
+    transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1),visibility .6s;
   }
-  .mstep.is-active .mstep-dot{ background:var(--blue);transform:scale(1.12); }
-  .mstep-body{
-    opacity:.4;transform:translateY(8px);
-    transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);
-  }
-  .mstep.is-active .mstep-body{ opacity:1;transform:translateY(0); }
-  .mstep-num{
+  .mcopy.is-active{ opacity:1;visibility:visible;transform:translateY(-50%); }
+  .mcopy-num{
     font-family:'Switzer',sans-serif;font-weight:600;font-size:14px;
-    color:var(--blue);letter-spacing:.04em;
+    color:var(--blue);letter-spacing:.06em;
   }
-  .mstep-name{
+  .mcopy-name{
     font-family:'Clash Display',sans-serif;font-weight:600;
-    font-size:clamp(28px,4vw,52px);line-height:1;letter-spacing:-.02em;
-    color:var(--blue);margin:12px 0 14px;
+    font-size:clamp(34px,5vw,68px);line-height:1;letter-spacing:-.025em;
+    color:var(--blue);margin:14px 0 18px;
   }
-  .mstep-desc{
+  .mcopy-desc{
     font-family:'Erode',serif;font-weight:400;
-    font-size:clamp(15px,1.6vw,19px);line-height:1.55;color:#28282e;
+    font-size:clamp(16px,1.7vw,20px);line-height:1.55;color:#28282e;
     max-width:46ch;margin:0;
+  }
+  .method-scrollzones{ position:relative; }
+  .mzone{ height:70vh; }
+  @media(max-width:760px){
+    .method-stage{ grid-template-columns:1fr;height:auto;position:static;gap:32px;padding:20px 0 40px; }
+    .method-orbit{ order:-1; }
+    .orbit-svg{ width:min(70%,260px); }
+    .method-copy{ min-height:0; }
+    .mcopy{ position:relative;top:auto;transform:none;opacity:1;visibility:visible;margin-bottom:40px; }
+    .mcopy.is-active{ transform:none; }
+    .method-scrollzones{ display:none; }
   }
 
   /* Pillars — what a brand needs (white grid) */

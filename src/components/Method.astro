@@ -5,23 +5,36 @@ const steps = [
   { n: "03", name: "Activation", desc: "We bring the brand to life across identity, design, and experience, then set it loose to grow." },
 ];
 ---
-<section class="method" id="method">
+<section class="method" id="method" data-method>
   <div class="method-inner">
     <span class="label">/How We Work</span>
-    <div class="method-steps" data-method>
-      {steps.map((s, i) => (
-        <div class="mstep" data-mstep data-index={i}>
-          <div class="mstep-marker">
-            <span class="mstep-dot"></span>
-            {i < steps.length - 1 && <span class="mstep-line"></span>}
+    <div class="method-stage">
+      <div class="method-orbit" aria-hidden="true">
+        <svg viewBox="0 0 200 200" class="orbit-svg">
+          <circle cx="100" cy="100" r="86" class="orbit-ring" />
+          <g class="orbit-rotor" data-rotor>
+            <!-- three points at 12, 4, 8 o'clock -->
+            <circle cx="100" cy="14" r="9" class="orbit-dot" data-dot="0" />
+            <circle cx="162.4" cy="136" r="9" class="orbit-dot" data-dot="1" />
+            <circle cx="37.6" cy="136" r="9" class="orbit-dot" data-dot="2" />
+          </g>
+          <circle cx="100" cy="14" r="5" class="orbit-marker" />
+        </svg>
+      </div>
+      <div class="method-copy">
+        {steps.map((s, i) => (
+          <div class="mcopy" data-mcopy data-index={i}>
+            <span class="mcopy-num">{s.n}</span>
+            <h3 class="mcopy-name">{s.name}</h3>
+            <p class="mcopy-desc">{s.desc}</p>
           </div>
-          <div class="mstep-body">
-            <span class="mstep-num">{s.n}</span>
-            <h3 class="mstep-name">{s.name}</h3>
-            <p class="mstep-desc">{s.desc}</p>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
+    </div>
+    <div class="method-scrollzones" data-mzones>
+      <div class="mzone" data-mzone="0"></div>
+      <div class="mzone" data-mzone="1"></div>
+      <div class="mzone" data-mzone="2"></div>
     </div>
   </div>
 </section>

@@ -362,28 +362,34 @@ function initEO(){
     });
   });
 
-  // method: activate steps as they reach mid-viewport, fill connector lines
-  const methodWrap = document.querySelector('[data-method]');
-  if(methodWrap && !methodWrap.__bound){
-    methodWrap.__bound = true;
-    const steps = Array.from(methodWrap.querySelectorAll('[data-mstep]'));
+  // method: orbit with 3 points — scroll activates each, rotor spins active dot to top, copy crossfades
+  const methodEl = document.querySelector('[data-method]');
+  if(methodEl && !methodEl.__bound){
+    methodEl.__bound = true;
+    const rotor = methodEl.querySelector('[data-rotor]');
+    const dots = Array.from(methodEl.querySelectorAll('[data-dot]'));
+    const copies = Array.from(methodEl.querySelectorAll('[data-mcopy]'));
+    const zones = Array.from(methodEl.querySelectorAll('[data-mzone]'));
+    let current = -1;
+    const setActive = (idx)=>{
+      if(idx === current) return;
+      current = idx;
+      dots.forEach((d,i)=>d.classList.toggle('is-on', i === idx));
+      copies.forEach((c,i)=>c.classList.toggle('is-active', i === idx));
+      if(rotor) rotor.style.transform = `rotate(${-120 * idx}deg)`;
+    };
     const onScroll = ()=>{
-      const mid = window.innerHeight * 0.55;
-      steps.forEach((step)=>{
-        const r = step.getBoundingClientRect();
-        const active = r.top <= mid && r.bottom >= 0;
-        step.classList.toggle('is-active', active);
-        // fill the connector line based on how far we've scrolled past the dot
-        const line = step.querySelector('.mstep-line');
-        if(line){
-          const dotY = r.top + 6;
-          const pct = Math.max(0, Math.min(100, ((mid - dotY) / (r.height)) * 100));
-          line.style.setProperty('--fill', pct + '%');
-        }
+      const mid = window.innerHeight * 0.5;
+      let active = 0;
+      zones.forEach((z,i)=>{
+        const r = z.getBoundingClientRect();
+        if(r.top <= mid) active = i;
       });
+      setActive(active);
     };
     window.addEventListener('scroll', onScroll, {passive:true});
     window.addEventListener('resize', onScroll, {passive:true});
+    setActive(0);
     onScroll();
   }
 
