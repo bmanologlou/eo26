@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Cta from '../../components/Cta.astro';
+import Footer from '../../components/Footer.astro';
+import { pillars, getPillar } from '../../data/pillars.js';
+
+export function getStaticPaths() {
+  return pillars.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const pillar = getPillar(slug);
+const idx = pillars.findIndex((p) => p.slug === slug);
+const next = pillars[(idx + 1) % pillars.length];
+---
+
+<Base title={`${pillar.name} — Approach — Eternal Optimists`} description={pillar.lead.slice(0, 155)}>
+  <Header />
+
+  <main class="pl">
+    <div class="pl-inner">
+      <aside class="pl-nav">
+        <span class="label">/Pillars</span>
+        <ul>
+          {pillars.map((p) => (
+            <li>
+              <a href={`/approach/${p.slug}`} class={p.slug === slug ? "is-current" : ""}>{p.name}</a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+      <article class="pl-body">
+        <span class="label pl-eyebrow">/{pillar.name}</span>
+        <h1 class="pl-question">{pillar.question}</h1>
+        <p class="pl-lead">{pillar.lead}</p>
+
+        <div class="pl-section">
+          <h2 class="pl-h2">{pillar.benefitTitle}</h2>
+          <p class="pl-text">{pillar.benefit}</p>
+        </div>
+
+        <div class="pl-section">
+          <h2 class="pl-h2">What it can include</h2>
+          <ul class="pl-services">
+            {pillar.services.map((s) => <li>{s}</li>)}
+          </ul>
+        </div>
+
+        <a href={`/approach/${next.slug}`} class="pl-next">
+          <span class="pl-next-label">Next pillar</span>
+          <span class="pl-next-name">{next.name} →</span>
+        </a>
+      </article>
+    </div>
+  </main>
+
+  <Cta />
+  <Footer />
+  <script is:inline defer src="/main.js"></script>
+</Base>
