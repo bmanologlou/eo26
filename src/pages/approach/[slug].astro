@@ -49,8 +49,13 @@ const next = pillars[(idx + 1) % pillars.length];
         </div>
 
         <a href={`/approach/${next.slug}`} class="pl-next">
-          <span class="pl-next-label">Next pillar</span>
-          <span class="pl-next-name">{next.name} →</span>
+          <span class="pl-next-text">
+            <span class="pl-next-label">Next pillar</span>
+            <span class="pl-next-name">{next.name}</span>
+          </span>
+          <span class="pl-next-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
         </a>
       </article>
     </div>
