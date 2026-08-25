@@ -19,6 +19,11 @@ const next = pillars[(idx + 1) % pillars.length];
   <Header />
 
   <main class="pl">
+    <div class="pl-top">
+      <span class="label">/The Six Pillars</span>
+      <h1 class="pl-toptitle">The building blocks of a modern brand.</h1>
+      <p class="pl-topintro">Our six pillars describe how a brand is created, evolved and grown. Each one contributes essential elements to a brand's development, from the foundation it stands on to the momentum that keeps it moving. Together they form a complete approach; individually, each solves a distinct part of the puzzle.</p>
+    </div>
     <div class="pl-inner">
       <aside class="pl-nav">
         <span class="label">/Pillars</span>
@@ -33,19 +38,28 @@ const next = pillars[(idx + 1) % pillars.length];
 
       <article class="pl-body">
         <span class="label pl-eyebrow">/{pillar.name}</span>
-        <h1 class="pl-question">{pillar.question}</h1>
+        <h2 class="pl-question">{pillar.question}</h2>
         <p class="pl-lead">{pillar.lead}</p>
 
         <div class="pl-section">
-          <h2 class="pl-h2">{pillar.benefitTitle}</h2>
+          <h3 class="pl-h2">{pillar.benefitTitle}</h3>
           <p class="pl-text">{pillar.benefit}</p>
         </div>
 
         <div class="pl-section">
-          <h2 class="pl-h2">What it can include</h2>
+          <h3 class="pl-h2">What it can include</h3>
           <ul class="pl-services">
             {pillar.services.map((s) => <li>{s}</li>)}
           </ul>
+        </div>
+
+        <div class="pl-links">
+          <a href="/work" class="text-link">See this in our work
+            <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </a>
+          <a href="/about" class="text-link">Meet the studio
+            <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </a>
         </div>
 
         <a href={`/approach/${next.slug}`} class="pl-next">
