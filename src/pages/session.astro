@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const CAL_LINK = "https://cal.com/eternaloptimists/";
+
+const steps = [
+  { n: "01", title: "Book a time", desc: "Pick a slot that works for you. It takes a minute, and you'll get a confirmation with everything you need." },
+  { n: "02", title: "We talk", desc: "A focused 30-minute conversation about your brand, your challenge, and where you want to go. No slides, no pitch." },
+  { n: "03", title: "You leave with direction", desc: "Clear, honest thoughts on your next steps, whether or not we end up working together." },
+];
+
+const forWho = [
+  "Founders shaping a brand from scratch",
+  "Teams whose brand no longer fits where they're headed",
+  "Anyone weighing a rebrand, a website, or a new direction",
+];
+---
+
+<Base title="Book a Session — Eternal Optimists" description="A free 30-minute conversation about your brand and where you want to take it. No pitch, just honest direction.">
+  <Header />
+
+  <main class="ses">
+    <section class="ses-hero">
+      <span class="label scroll-reveal">/Book a Session</span>
+      <h1 class="ses-title scroll-reveal">A conversation about<br><em>where you're headed.</em></h1>
+      <p class="ses-lead scroll-reveal">Every good brand starts with a good conversation. Book a free 30-minute session and we'll talk through your brand, your challenge, and the clearest way forward. No pitch, no obligation, just honest thinking from people who do this every day.</p>
+      <a href={CAL_LINK} target="_blank" rel="noopener" class="btn-fill ses-cta scroll-reveal">
+        Book your session
+        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+      </a>
+      <span class="ses-note scroll-reveal">Free · Up to 30 minutes · Online</span>
+    </section>
+
+    <section class="ses-block">
+      <span class="label scroll-reveal">/How It Works</span>
+      <div class="ses-steps" data-stagger>
+        {steps.map((s) => (
+          <div class="ses-step reveal-item">
+            <span class="ses-step-num">{s.n}</span>
+            <h3 class="ses-step-title">{s.title}</h3>
+            <p class="ses-step-desc">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="ses-block">
+      <span class="label scroll-reveal">/Who It's For</span>
+      <ul class="ses-for" data-stagger>
+        {forWho.map((f) => <li class="reveal-item">{f}</li>)}
+      </ul>
+    </section>
+
+    <section class="ses-final">
+      <h2 class="scroll-reveal">Ready when you are.</h2>
+      <p class="ses-final-sub scroll-reveal">Grab a slot and let's talk. Worst case, you leave with a clearer head.</p>
+      <a href={CAL_LINK} target="_blank" rel="noopener" class="btn-fill ses-cta scroll-reveal">
+        Book your session
+        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
