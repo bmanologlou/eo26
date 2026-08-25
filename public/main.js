@@ -362,40 +362,6 @@ function initEO(){
     });
   });
 
-  // method: orbit with 3 points — scroll fills each point in turn, copy crossfades beside it
-  const methodEl = document.querySelector('[data-method]');
-  if(methodEl && !methodEl.__bound){
-    methodEl.__bound = true;
-    const dots = Array.from(methodEl.querySelectorAll('[data-dot]'));
-    const labels = Array.from(methodEl.querySelectorAll('[data-dotlabel]'));
-    const copies = Array.from(methodEl.querySelectorAll('[data-mcopy]'));
-    const zones = Array.from(methodEl.querySelectorAll('[data-mzone]'));
-    let current = -1;
-    const setActive = (idx)=>{
-      if(idx === current) return;
-      current = idx;
-      dots.forEach((d,i)=>{
-        d.classList.toggle('is-on', i <= idx);   // fill this and all previous
-        d.classList.toggle('is-current', i === idx);
-      });
-      labels.forEach((l,i)=>l.classList.toggle('is-on', i <= idx));
-      copies.forEach((c,i)=>c.classList.toggle('is-active', i === idx));
-    };
-    const onScroll = ()=>{
-      const mid = window.innerHeight * 0.5;
-      let active = 0;
-      zones.forEach((z,i)=>{
-        const r = z.getBoundingClientRect();
-        if(r.top <= mid) active = i;
-      });
-      setActive(active);
-    };
-    window.addEventListener('scroll', onScroll, {passive:true});
-    window.addEventListener('resize', onScroll, {passive:true});
-    setActive(0);
-    onScroll();
-  }
-
 }
 if (document.readyState !== 'loading') { initEO(); }
 document.addEventListener('astro:page-load', initEO);

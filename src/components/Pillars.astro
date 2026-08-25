@@ -1,11 +1,11 @@
 ---
 const pillars = [
-  { n: "01", name: "Foundation", slug: "foundation", desc: "The purpose, values, and truth a brand is built on. Everything else stands on this." },
-  { n: "02", name: "Strategy", slug: "strategy", desc: "Positioning, narrative, and direction. How the brand competes and why it matters." },
-  { n: "03", name: "Identity", slug: "identity", desc: "The name, voice, and personality that make a brand recognisably itself." },
-  { n: "04", name: "Design", slug: "design", desc: "The visual system, from logo to typography to art direction, that makes it real." },
-  { n: "05", name: "Experience", slug: "experience", desc: "Every touchpoint, digital and physical, where people meet and remember the brand." },
-  { n: "06", name: "Growth", slug: "growth", desc: "Content, campaigns, and systems that keep the brand moving and expanding." },
+  { name: "Foundation", slug: "foundation", desc: "The purpose, values, and truth a brand is built on. Everything else stands on this." },
+  { name: "Strategy", slug: "strategy", desc: "Positioning, narrative, and direction. How the brand competes and why it matters." },
+  { name: "Identity", slug: "identity", desc: "The name, voice, and personality that make a brand recognisably itself." },
+  { name: "Design", slug: "design", desc: "The visual system, from logo to typography to art direction, that makes it real." },
+  { name: "Experience", slug: "experience", desc: "Every touchpoint, digital and physical, where people meet and remember the brand." },
+  { name: "Growth", slug: "growth", desc: "Content, campaigns, and systems that keep the brand moving and expanding." },
 ];
 ---
 <section class="pillars">
@@ -16,16 +16,13 @@ const pillars = [
   </div>
   <div class="pillars-list" data-stagger>
     {pillars.map((p) => (
-      <a class="pillar reveal-item" href={`/approach/${p.slug}`}>
-        <span class="pillar-num">{p.n}</span>
-        <div class="pillar-body">
-          <h3 class="pillar-name">{p.name}</h3>
-          <p class="pillar-desc">{p.desc}</p>
-        </div>
-        <span class="pillar-arrow" aria-hidden="true">
+      <div class="pillar reveal-item">
+        <h3 class="pillar-name">{p.name}</h3>
+        <p class="pillar-desc">{p.desc}</p>
+        <a class="text-link pillar-link" href={`/approach/${p.slug}`}>Explore
           <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
-        </span>
-      </a>
+        </a>
+      </div>
     ))}
   </div>
 </section>
