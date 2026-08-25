@@ -74,6 +74,14 @@ const next = pillars[(idx + 1) % pillars.length];
 </Base>
 
 <style is:global>
-  body:has(.pl){ background:#EEEEFE; }
-  body:has(.pl) .cta-close, body:has(.pl) footer{ background:#EEEEFE; }
+  body.pillar-page{ background:#EEEEFE; }
+  body.pillar-page .cta-close, body.pillar-page footer{ background:#EEEEFE; }
 </style>
+<script is:inline>
+  (function(){
+    const apply = ()=>{ if(document.querySelector('.pl')) document.body.classList.add('pillar-page'); else document.body.classList.remove('pillar-page'); };
+    apply();
+    document.addEventListener('astro:page-load', apply);
+    document.addEventListener('astro:after-swap', apply);
+  })();
+</script>
