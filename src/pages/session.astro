@@ -12,9 +12,17 @@ const steps = [
 ];
 
 const forWho = [
-  "Founders shaping a brand from scratch",
-  "Teams whose brand no longer fits where they're headed",
-  "Anyone weighing a rebrand, a website, or a new direction",
+  "Founders shaping a brand from the ground up",
+  "Businesses whose brand no longer fits where they're headed",
+  "Teams planning a rebrand, a website, or a bigger move",
+  "Anyone who senses their brand could be working harder",
+  "People who just want a clear, outside perspective",
+];
+
+const benefits = [
+  { title: "Clarity on where you stand", desc: "An honest read on your brand today, what's working, what's holding it back, and what deserves your attention first." },
+  { title: "A sense of direction", desc: "Concrete, practical next steps you can act on, whether that's alongside us or entirely on your own." },
+  { title: "Room to think out loud", desc: "A calm, no-pressure space to talk through the questions you haven't had time to sit with." },
 ];
 ---
 
@@ -46,8 +54,22 @@ const forWho = [
       </div>
     </section>
 
+    <section class="ses-block ses-benefits">
+      <span class="label scroll-reveal">/What You'll Get</span>
+      <p class="ses-block-intro scroll-reveal">Half an hour, and something to show for it. You won't get a sales pitch, you'll get real thinking about your brand and a clearer idea of where to take it next.</p>
+      <div class="ses-benefit-grid" data-stagger>
+        {benefits.map((b) => (
+          <div class="ses-benefit reveal-item">
+            <h3 class="ses-benefit-title">{b.title}</h3>
+            <p class="ses-benefit-desc">{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
     <section class="ses-block">
       <span class="label scroll-reveal">/Who It's For</span>
+      <p class="ses-block-intro scroll-reveal">A session is for anyone with a brand on their mind, wherever they are in the journey. You don't need a brief, a budget, or even a firm plan. If any of these sound like you, it's worth a conversation.</p>
       <ul class="ses-for" data-stagger>
         {forWho.map((f) => <li class="reveal-item">{f}</li>)}
       </ul>
