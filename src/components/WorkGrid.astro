@@ -21,8 +21,12 @@ const left = withIdx.filter((_, i) => i % 2 === 0);
 const right = withIdx.filter((_, i) => i % 2 === 1);
 ---
 <section class="workgrid">
+  <div class="workgrid-intro">
+    <span class="label scroll-reveal">/Selected Work</span>
+    <h1 class="workgrid-title scroll-reveal">Brands we've built,<br><em>problems we've solved</em></h1>
+    <p class="workgrid-lead scroll-reveal">A selection of the brands we've helped shape, from first strategy to full identity and everything after. Different industries, different challenges, one belief: clarity comes first.</p>
+  </div>
   <div class="workgrid-head">
-    <span class="label">/Selected Work</span>
     <div class="workgrid-filters">
       {filters.map((f, i) => (
         <button class={`wg-filter${i === 0 ? " active" : ""}`} data-filter={f}>{f}</button>
