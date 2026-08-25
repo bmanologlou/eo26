@@ -99,6 +99,27 @@ function initEO(){
   document.querySelectorAll('.scroll-reveal').forEach((el)=>{ io.observe(el); });
   document.querySelectorAll('[data-stagger]').forEach((el)=>{ io.observe(el); });
 
+  // Guarantee anything already in view on load reveals immediately
+  // (IntersectionObserver can miss this right after a View Transition swap)
+  requestAnimationFrame(()=>{
+    const vh = window.innerHeight;
+    const revealNow = (el)=>{
+      const r = el.getBoundingClientRect();
+      if(r.top < vh * 0.92){
+        if(el.hasAttribute('data-stagger')){
+          el.querySelectorAll('.reveal-item').forEach((item,i)=>{
+            setTimeout(()=>item.classList.add('in'), 90 + i*150);
+          });
+        } else {
+          setTimeout(()=>el.classList.add('in'), (el.dataset.delay? +el.dataset.delay : 0));
+        }
+        io.unobserve(el);
+      }
+    };
+    document.querySelectorAll('.scroll-reveal').forEach(revealNow);
+    document.querySelectorAll('[data-stagger]').forEach(revealNow);
+  });
+
   // shrink logo to EO after scroll
   let scrolled=false;
   window.addEventListener('scroll', ()=>{
