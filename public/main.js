@@ -362,6 +362,31 @@ function initEO(){
     });
   });
 
+  // method: activate steps as they reach mid-viewport, fill connector lines
+  const methodWrap = document.querySelector('[data-method]');
+  if(methodWrap && !methodWrap.__bound){
+    methodWrap.__bound = true;
+    const steps = Array.from(methodWrap.querySelectorAll('[data-mstep]'));
+    const onScroll = ()=>{
+      const mid = window.innerHeight * 0.55;
+      steps.forEach((step)=>{
+        const r = step.getBoundingClientRect();
+        const active = r.top <= mid && r.bottom >= 0;
+        step.classList.toggle('is-active', active);
+        // fill the connector line based on how far we've scrolled past the dot
+        const line = step.querySelector('.mstep-line');
+        if(line){
+          const dotY = r.top + 6;
+          const pct = Math.max(0, Math.min(100, ((mid - dotY) / (r.height)) * 100));
+          line.style.setProperty('--fill', pct + '%');
+        }
+      });
+    };
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll, {passive:true});
+    onScroll();
+  }
+
 }
 if (document.readyState !== 'loading') { initEO(); }
 document.addEventListener('astro:page-load', initEO);

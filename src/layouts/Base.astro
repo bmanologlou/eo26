@@ -795,35 +795,42 @@ const {
     max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);
   }
   .method .label{color:var(--blue);opacity:.7;}
-  .method-track{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);
-    position:relative;margin-top:16px;
+  .method-steps{ margin-top:clamp(32px,5vh,60px);max-width:var(--measure-wide); }
+  .mstep{
+    display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3vw,44px);
+    padding-bottom:clamp(40px,7vh,88px);
   }
-  .method-line{
-    position:absolute;top:18px;left:0;height:2px;width:100%;
-    background:rgba(20,20,190,.18);overflow:hidden;
+  .mstep:last-child{ padding-bottom:0; }
+  .mstep-marker{ position:relative;display:flex;flex-direction:column;align-items:center;padding-top:6px; }
+  .mstep-dot{
+    width:26px;height:26px;border-radius:50%;
+    border:2px solid var(--blue);background:transparent;flex:0 0 auto;
+    transition:background .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1);
   }
-  .method-line::after{
-    content:'';position:absolute;inset:0;width:var(--fill,0%);
-    background:var(--blue);transition:width 1.4s cubic-bezier(.2,.7,.2,1);
+  .mstep-line{
+    width:2px;flex:1;margin-top:10px;min-height:60px;
+    background:linear-gradient(to bottom, var(--blue) 0%, var(--blue) var(--fill,0%), rgba(20,20,190,.18) var(--fill,0%));
+    transition:none;
   }
-  .method.in .method-line::after{width:100%;}
-  .stage-num{
-    font-family:'Switzer',sans-serif;font-weight:600;font-size:15px;
-    color:var(--blue);letter-spacing:.02em;
-    display:inline-flex;align-items:center;justify-content:center;
-    width:38px;height:38px;border-radius:50%;background:#E6E6FE;
-    border:2px solid var(--blue);position:relative;z-index:1;
+  .mstep.is-active .mstep-dot{ background:var(--blue);transform:scale(1.12); }
+  .mstep-body{
+    opacity:.4;transform:translateY(8px);
+    transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);
   }
-  .stage-name{
+  .mstep.is-active .mstep-body{ opacity:1;transform:translateY(0); }
+  .mstep-num{
+    font-family:'Switzer',sans-serif;font-weight:600;font-size:14px;
+    color:var(--blue);letter-spacing:.04em;
+  }
+  .mstep-name{
     font-family:'Clash Display',sans-serif;font-weight:600;
-    font-size:clamp(26px,3.6vw,44px);line-height:1;letter-spacing:-.02em;
-    color:var(--blue);margin:22px 0 12px;
+    font-size:clamp(28px,4vw,52px);line-height:1;letter-spacing:-.02em;
+    color:var(--blue);margin:12px 0 14px;
   }
-  .stage-desc{
+  .mstep-desc{
     font-family:'Erode',serif;font-weight:400;
-    font-size:clamp(15px,1.5vw,18px);line-height:1.55;color:#28282e;
-    max-width:34ch;
+    font-size:clamp(15px,1.6vw,19px);line-height:1.55;color:#28282e;
+    max-width:46ch;margin:0;
   }
 
   /* Pillars — what a brand needs (white grid) */
